@@ -1,0 +1,18 @@
+map <BS> gu
+map ,s :so<Space>.vimperatorrc<Return>
+map <C-b> :bmarks 
+map <C-h> :hist 
+noremap j 8j
+noremap k 8k
+noremap J <C-d>
+noremap K <C-u>
+noremap h gT
+noremap l gt
+noremap . <C-6>
+noremap ] ]]
+noremap [ [[
+set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
+set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
+source! /home/xm/.vimperatorrc.local
+
+" vim: set ft=vimperator:

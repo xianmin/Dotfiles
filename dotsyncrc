@@ -23,7 +23,7 @@ dotsyncrc
 #ctags/ctags
 #cmus
 #curl/curlrc
-#git/gitconfig
+git/gitconfig
 #git/gitignore
 #git/gitattributes
 #git/tigrc
@@ -38,6 +38,7 @@ dotsyncrc
 #mutt
 #mutt/muttrc
 #mutt/offlineimaprc
+python/jupyter
 #python/pythonrc
 #python/pylintrc
 #rpm/rpmmacros
@@ -59,6 +60,7 @@ dotsyncrc
 #tmux/tmuxinator
 #vim/dotvim:.vim
 vim/vimrc
+vim/vimperatorrc
 #vim/gvimrc
 #wget/wgetrc
 #zsh/fasdrc
@@ -67,7 +69,7 @@ zsh/oh-my-zsh
 #zsh/zlogout
 #zsh/zprofile
 #zsh/zshenv
-#zsh/zshrc
+zsh/zshrc
 [endfiles]
 
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
