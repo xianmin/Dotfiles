@@ -17,6 +17,8 @@ DOTFILES=Dotfiles
 #
 [files]
 dotsyncrc
+emacs/xm-spacemacs:.emacs.d
+emacs/spacemacs
 #ack/ackrc
 #aptitude
 #bin:bin
