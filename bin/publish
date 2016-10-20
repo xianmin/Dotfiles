@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+SITE="$HOME/Write/1-site"
+PUBLISH="$HOME/Write/2-publish"
+
+cd $SITE
+described_rev=$(git rev-parse HEAD | git name-rev --stdin)
+git add .
+git commit -m "pages built at $described_rev"
+git push origin master
+
+
+cd $PUBLISH
+described_rev=$(git rev-parse HEAD | git name-rev --stdin)
+git add .
+git commit -m "pages built at $described_rev"
+git push origin coding-pages

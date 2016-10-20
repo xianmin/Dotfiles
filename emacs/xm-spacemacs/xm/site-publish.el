@@ -1,19 +1,19 @@
 (setq org-export-default-language "zh_CN")
 
-(setq blog-path "~/Write/Xm-Website/")
-(setq publish-path "~/Write/Xm-Website/publish/")
+(setq site-path "~/Write/1-site/")
+(setq publish-path "~/Write/2-publish/")
 ;; (setq images-path "~/Write/Xm-Website/images/")
 (setq org-html-validation-link nil)
 (setq org-confirm-babel-evaluate nil)
 
 (setq postamble (with-temp-buffer
-                  (insert-file-contents "~/Write/Xm-Website/templates/postamble.html")
+                  (insert-file-contents "~/Write/1-site/templates/postamble.html")
                   (buffer-string)))
 (setq preamble (with-temp-buffer
-                 (insert-file-contents "~/Write/Xm-Website/templates/preamble.html")
+                 (insert-file-contents "~/Write/1-site/templates/preamble.html")
                  (buffer-string)))
 (setq header (with-temp-buffer
-               (insert-file-contents "~/Write/Xm-Website/templates/header.html")
+               (insert-file-contents "~/Write/1-site/templates/header.html")
                (buffer-string)))
 
 
@@ -21,12 +21,12 @@
   "Set publishing projects for Orgweb and Worg."
   (interactive)
   (setq org-publish-project-alist
-    `(("blog-posts"
+    `(("site-posts"
        ;; Directory for source files in org format
        :author "贤民"
        :email "xianmin12@qq.com"
        :language "zh_CN"
-       :base-directory ,blog-path
+       :base-directory ,site-path
         :base-extension "org"
         :html-doctype "html5"
         :html-head ,header
@@ -44,8 +44,8 @@
         :exclude "^draft"
         :html-head-include-default-style nil
         )
-       ("blog-static"
-         :base-directory ,blog-path
+       ("site-static"
+         :base-directory ,site-path
          :base-extension "css\\|js\\|png\\|jpg\\|gif\\|ico"
          :publishing-directory ,publish-path
          :recursive t
@@ -70,10 +70,10 @@
        ;;   :exclude ".*"            ;; To exclude all files...
        ;;   :include ("index.org")   ;; ... except index.org.
        ;;   :table-of-contents nil)
-       ("blog" :components ("blog-posts" "blog-static"))
+       ("blog" :components ("site-posts" "site-static"))
        )))
 (set-org-publish-project-alist)
 
-(provide 'blog-publish)
+(provide 'site-publish)
 
 ;;; blog-publish.el ends here

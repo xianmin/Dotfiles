@@ -111,4 +111,4 @@
 (auto-save-enable)              ;; 开启自动保存功能
 (setq auto-save-slient t)       ;; 自动保存的时候静悄悄的， 不要打扰我
 
-(require 'blog-publish)
+(require 'site-publish)
