@@ -88,6 +88,11 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
 source /usr/local/bin/virtualenvwrapper.sh
 
+export PATH="/home/xm/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
 # added by Anaconda3 4.1.1 installer
 # export PATH="/home/xm/Software/anaconda3/bin:$PATH"
 
@@ -99,3 +104,19 @@ SAVEHIST=10000
 setopt hist_ignore_all_dups
 # 在命令前添加空格，不将此命令添加到记录文件中
 setopt hist_ignore_space
+
+# less color configure
+# blue
+export LESS_TERMCAP_mb=$'\E[01;34m'
+# red
+export LESS_TERMCAP_md=$'\E[01;31m'
+# magenta
+export LESS_TERMCAP_me=$'\E[01;35m'
+# write
+export LESS_TERMCAP_se=$'\E[0m'
+# yellow
+export LESS_TERMCAP_so=$'\E[01;44;33m'
+# cyan
+export LESS_TERMCAP_ue=$'\E[01;36m'
+# green
+export LESS_TERMCAP_us=$'\E[01;32m'

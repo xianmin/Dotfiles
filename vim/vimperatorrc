@@ -1,7 +1,23 @@
+mapclear
+
+set complete=l
+set hintchars=hjklasdf
+set hintinputs=name,value
+set hintmatching=firstletters
+set animations
+set newtab=all
+set maxitems=30
+set gui=none
+set gui=addons,navigation,tabs
+let mapleader = ","
+
+map ,h :echo "Hello"
+map <C-g> <Esc>
 map <BS> gu
 map ,s :so<Space>.vimperatorrc<Return>
 map <C-b> :bmarks 
-map <C-h> :hist 
+map <C-h> :hist
+
 noremap j 8j
 noremap k 8k
 noremap J <C-d>
@@ -11,8 +27,76 @@ noremap l gt
 noremap . <C-6>
 noremap ] ]]
 noremap [ [[
+
+map <F2> <Esc>t chrome://browser/content/places/places.xul<Return>
+map <F3> <Esc>t chrome://browser/content/downloads/contentAreaDownloadsView.xul<Return>
+
+
+
+highlight Hint font-family: monospace; font-size: 13px; font-weight: bold; text-transform: uppercase; color: white; background-color: black; border-color: ButtonShadow; border-width: 0px; border-style: solid; padding: 0px 1px 0px 1px;
+highlight StatusLine color: black; background: transparent; font-weight: bold;
+
 set nextpattern=\s*下一页|下一张|下一篇|下页|后页\s*,^\bnext\b,\\bnext\\b,^>$,^(>>|»)$,^(>|»),(>|»)$,\\bmore\\b
 set previouspattern=\s*上一页|上一张|上一篇|上页|前页\s*,^\bprev|previous\b,\\bprev|previous\\b,^<$,^(<<|«)$,^(<|«),(<|«)$
 source! /home/xm/.vimperatorrc.local
+
+
+" Resources:
+" https://github.com/amq/firefox-debloat
+
+" restore last session
+set! browser.startup.page=3
+
+" always load tabs (not just when clicking)
+set! browser.sessionstore.restore_on_demand=false
+
+set! browser.shell.checkDefaultBrowser=false
+set! layout.css.visited_links_enabled=false
+set! browser.newtabpage.enabled=false
+"set! network.http.sendRefererHeader=true
+set! network.http.referer.spoofSource=true
+set! browser.search.update=false
+set! browser.aboutHomeSnippets.updateUrl=""
+set! media.gmp-gmpopenh264.enabled=false
+set! browser.search.suggest.enabled=false
+set! browser.search.geoip.url=""
+
+set! browser.safebrowsing.enabled=false
+set! browser.safebrowsing.downloads.enabled=false
+set! browser.safebrowsing.malware.enabled=false
+
+set! browser.selfsupport.url=""
+set! browser.newtabpage.directory.ping=""
+set! browser.newtab.preload=false
+set! browser.newtabpage.enhanced=false
+set! datareporting.healthreport.service.enabled=false
+set! datareporting.healthreport.uploadEnabled=false
+set! toolkit.telemetry.enabled=false
+set! toolkit.telemetry.unified=false
+set! privacy.trackingprotection.enabled=true
+set! browser.polaris.enabled=true
+set! browser.send_pings=false
+set! device.sensors.enabled=false
+set! media.getusermedia.screensharing.enabled=false
+set! media.webspeech.recognition.enable=false
+set! dom.telephony.enabled=false
+set! media.peerconnection.enabled=false
+
+set! media.eme.enabled=false
+set! media.gmp-eme-adobe.enabled=false
+
+" Firefox connects to third-party (Telefonica) servers without asking for permission.
+set! loop.enabled=false
+
+set! browser.pocket.enabled=false
+set! reader.parse-on-load.enabled=false
+
+" force acceleration (2016/03: Makes game faster, but causes some glitches and lags in general browsing)
+"set! layers.acceleration.force-enabled=true
+
+set! geo.enabled=false
+
+" how long a script can run before the "kill script?" dialog appears
+set! dom.max_script_run_time=5
 
 " vim: set ft=vimperator:

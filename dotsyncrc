@@ -26,7 +26,7 @@ emacs/spacemacs
 #cmus
 #curl/curlrc
 git/gitconfig
-#git/gitignore
+git/gitignore
 #git/gitattributes
 #git/tigrc
 #git/gitk

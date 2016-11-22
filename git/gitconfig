@@ -1,4 +1,10 @@
 [user]
-[user]
 	email = xianmin12@qq.com
 	name = Xianmin Chen
+[push]
+    default = matching
+[core]
+    editor = gvim -f
+    excludesfile = ~/.gitignore
+
+# 参考：https://gist.github.com/pksunkara/988716
