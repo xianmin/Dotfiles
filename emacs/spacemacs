@@ -18,6 +18,7 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     vimscript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -283,7 +284,6 @@ you should place your code here."
   ;; (define-key evil-insert-state-map (kbd "C-p") 'evil-previous-visual-line)
   ;; (define-key evil-insert-state-map (kbd "C-n") 'evil-next-visual-line)
   ;; (define-key evil-insert-state-map (kbd "C-y") 'evil-paste-after)
-
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

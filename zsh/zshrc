@@ -81,7 +81,8 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias ec="emacsclient -t"
+alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 export WORKON_HOME=$HOME/.virtualenvs
@@ -120,3 +121,5 @@ export LESS_TERMCAP_so=$'\E[01;44;33m'
 export LESS_TERMCAP_ue=$'\E[01;36m'
 # green
 export LESS_TERMCAP_us=$'\E[01;32m'
+
+
