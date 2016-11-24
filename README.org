@@ -1,1 +1,4 @@
 * dotfiles
+该项目为我个人的一些配置文件的备份。
+* dotsync
+原项目地址：[[https://github.com/dotphiles/dotsync][dotphiles/dotsync: Sync dotfiles between multiple machines from a git repo or push using rsync]]
