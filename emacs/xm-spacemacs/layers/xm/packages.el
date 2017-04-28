@@ -13,6 +13,7 @@
       '(
         writeroom-mode
         ;; blog-admin
+        org-brain
         ))
 
 (defun xm/init-writeroom-mode ()
@@ -21,6 +22,13 @@
     (progn
       (setq writeroom-fullscreen-effect 'maximized)
       (global-set-key (kbd "<S-f11>") 'writeroom-mode)
+      )))
+
+(defun xm/init-org-brain ()
+  (use-package org-brain
+    :init
+    (progn
+      (setq org-brain-path "~/Write/brain")
       )))
 
 ;; (defun xm/init-blog-admin ()

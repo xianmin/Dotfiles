@@ -18,23 +18,26 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
+     php
      vimscript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
-     ;; auto-completion
+     auto-completion
      ;; better-defaults
      emacs-lisp
      (chinese :variables
               chinese-enable-fcitx t)
      git
-     ;; markdown
+     markdown
      org
      (shell :variables
              shell-default-height 30
              shell-default-position 'bottom)
+     imenu-list
+     deft
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
@@ -248,6 +251,11 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+
+  (setq configuration-layer--elpa-archives
+        '(("melpa-cn" . "http://elpa.emacs-china.org/melpa/")
+          ("org-cn"   . "http://elpa.emacs-china.org/org/")
+          ("gnu-cn"   . "http://elpa.emacs-china.org/gnu/")))
   )
 
 (defun dotspacemacs/user-config ()
@@ -262,13 +270,8 @@ you should place your code here."
   (setq tramp-ssh-controlmaster-options
         "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
-  (setq configuration-layer--elpa-archives
-        '(("melpa-cn" . "http://elpa.zilongshanren.com/melpa/")
-          ("org-cn"   . "http://elpa.zilongshanren.com/org/")
-          ("gnu-cn"   . "http://elpa.zilongshanren.com/gnu/")))
-
-  (spacemacs//set-monospaced-font   "DejaVu Sans Mono" "Source Han Sans SC" 19 22) ;; 字体
-  (setq-default line-spacing 10)  ;; 增大行高
+  (spacemacs//set-monospaced-font   "DejaVu Sans Mono" "Source Han Sans SC" 15 18) ;; 字体
+  (setq-default line-spacing 8)  ;; 增大行高
   (setq user-full-name "Xianmin Chen"
         user-mail-address "xianmin12@qq.com")
 
@@ -284,7 +287,44 @@ you should place your code here."
   ;; (define-key evil-insert-state-map (kbd "C-p") 'evil-previous-visual-line)
   ;; (define-key evil-insert-state-map (kbd "C-n") 'evil-next-visual-line)
   ;; (define-key evil-insert-state-map (kbd "C-y") 'evil-paste-after)
+
+  ;; disable evil-mode
+  (evil-set-initial-state 'dired-mode 'emacs)
+  (evil-set-initial-state 'org-brain-visualize-mode 'emacs)
+
+  ;;
+  (spacemacs/set-leader-keys "ab" 'org-brain-visualize)
+
+  ;; deft
+  (setq deft-extensions '("org" "md" "txt"))
+  (setq deft-directory "~/Write/brain")
+
+  ; 当要打开一个symbolink的时候，如果symbollink到一个被git（或者其他vc）管理的文件时，emacs老问
+  ; Symbolic link to Git-controlled source file; follow link? (y or n)
+  ; 配置下这个变量就好了
+  (setq vc-follow-symlinks nil)
+
+  ;; (require 'ob-python)
+  ;; (org-babel-do-load-languages
+  ;;  'org-babel-load-languages
+  ;;  '((python . t)))
+
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (helm-company helm-c-yasnippet company-web web-completion-data company-statistics company-anaconda company auto-yasnippet ac-ispell auto-complete deft org-brain yapfify xterm-color ws-butler writeroom-mode window-numbering which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package toc-org tagedit spacemacs-theme spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode info+ indent-guide imenu-list ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flx-ido find-by-pinyin-dired fill-column-indicator fcitx fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump drupal-mode define-word dactyl-mode cython-mode column-enforce-mode clean-aindent-mode chinese-pyim auto-highlight-symbol auto-compile anaconda-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line)))
+ '(paradox-github-token t))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )

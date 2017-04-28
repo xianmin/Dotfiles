@@ -8,7 +8,7 @@ set animations
 set newtab=all
 set maxitems=30
 set gui=none
-set gui=addons,navigation,tabs
+set gui=addons,navigation,tabs,bookmarks
 let mapleader = ","
 
 map ,h :echo "Hello"
