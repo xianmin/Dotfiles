@@ -41,6 +41,7 @@ git/gitignore
 #mutt/muttrc
 #mutt/offlineimaprc
 python/jupyter
+python/pip.conf:.config/pip/pip.conf
 #python/pythonrc
 #python/pylintrc
 #rpm/rpmmacros

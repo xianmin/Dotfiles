@@ -55,6 +55,7 @@ plugins=(git)
 
 export PATH="$HOME/Project/nvm/versions/node/v4.4.5/bin:/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
 export PATH="$HOME/Dotfiles/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
