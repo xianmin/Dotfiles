@@ -73,6 +73,8 @@ zsh/oh-my-zsh
 #zsh/zprofile
 #zsh/zshenv
 zsh/zshrc
+js/jsbeautifyrc
+js/tern-config
 [endfiles]
 
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
