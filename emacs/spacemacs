@@ -18,9 +18,9 @@ values."
    ;; of a list then all discovered layers will be installed.
    dotspacemacs-configuration-layers
    '(
-     react
-     javascript
-     ;;php
+     ;; react
+     ;; javascript
+     ;; php
      vimscript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -276,6 +276,7 @@ you should place your code here."
   (setq-default line-spacing 8)  ;; 增大行高
   (setq user-full-name "Xianmin Chen"
         user-mail-address "xianmin12@qq.com")
+  (setq split-width-threshold 1)   ;; 默认垂直分割窗口
 
   ;; change insert-state to emacs-state
   (defalias 'evil-insert-state 'evil-emacs-state)

@@ -4,7 +4,12 @@
 [push]
     default = matching
 [core]
-    editor = gvim -f
+	editor = code --wait
     excludesfile = ~/.gitignore
 
 # 参考：https://gist.github.com/pksunkara/988716
+
+[diff]
+    tool = default-difftool
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE

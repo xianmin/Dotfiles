@@ -29,6 +29,9 @@
     :init
     (progn
       (setq org-brain-path "~/Write/brain")
+      (setq org-id-track-globally t)
+      (setq org-id-locations-file "~/.emacs.d/.org-id-locations")
+      (setq org-brain-visualize-default-choices 'all)
       )))
 
 ;; (defun xm/init-blog-admin ()

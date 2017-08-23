@@ -75,6 +75,9 @@ zsh/oh-my-zsh
 zsh/zshrc
 js/jsbeautifyrc
 js/tern-config
+
+# VScode
+VScode/settings.json:.config/Code/User/settings.json
 [endfiles]
 
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
