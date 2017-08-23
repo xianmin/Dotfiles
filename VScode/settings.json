@@ -1,0 +1,22 @@
+// Place your settings in this file to overwrite the default settings
+{
+    "update.channel": "none",
+    "files.autoSave": "afterDelay",
+    "workbench.colorTheme": "Visual Studio Dark",
+    "editor.fontSize": 16,
+    "editor.renderWhitespace": "boundary",
+    "editor.cursorStyle": "block",
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.cursorBlinking": "solid",
+    "editor.mouseWheelZoom": true,
+
+    "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
+    "editor.fontLigatures": true,
+    "editor.dragAndDrop": true,
+    "extensions.autoUpdate": true,
+    "workbench.iconTheme": "vs-seti",
+    "vim.disableAnnoyingNeovimMessage": true,
+    "vim.overrideCopy": false,
+    "vim.insertModeKeyBindings": []
+}
