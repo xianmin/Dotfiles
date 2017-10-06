@@ -14,6 +14,7 @@
         writeroom-mode
         ;; blog-admin
         org-brain
+        easy-hugo
         ))
 
 (defun xm/init-writeroom-mode ()
@@ -34,15 +35,16 @@
       (setq org-brain-visualize-default-choices 'all)
       )))
 
-;; (defun xm/init-blog-admin ()
-;;   (use-package blog-admin
-;;     :init
-;;     (progn
-;;       (setq blog-admin-backend-type 'nikola)
-;;       (setq blog-admin-backend-path "~/Write/blog")
-;;       (setq blog-admin-backend-new-post-in-drafts t)
-;;       (setq blog-admin-backend-nikola-executable "/home/xm/.virtualenvs/python3/bin/nikola") ;; path to nikola executable
-;;       (setq blog-admin-backend-nikola-config-file "conf.py") ;; conf.py is default
-;;       )))
+(defun xm/init-easy-hugo ()
+  (use-package easy-hugo
+    :init
+    (progn
+      (setq easy-hugo-basedir "~/test/quickstart/")
+      (setq easy-hugo-url "https://xianmin.org")
+      (setq easy-hugo-previewtime "300")
+      (spacemacs/set-leader-keys "ah" 'easy-hugo)
+      (setq easy-hugo-default-ext ".org")
+      (setq easy-hugo-postdir "content/posts")
+      )))
 
 ;;; packages.el ends here

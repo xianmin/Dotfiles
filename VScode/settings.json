@@ -18,5 +18,6 @@
     "workbench.iconTheme": "vs-seti",
     "vim.disableAnnoyingNeovimMessage": true,
     "vim.overrideCopy": false,
-    "vim.insertModeKeyBindings": []
+    "vim.insertModeKeyBindings": [],
+    "editor.tabSize": 2
 }

@@ -29,53 +29,18 @@
 (global-set-key (kbd "M-C-0") '(lambda () (interactive) (modify-frame-parameters nil `((alpha . 100)))))
 
 
-;; org
+;;;; org-mode
+;; Custom Key Bindings
+(global-set-key (kbd "<f12>") 'org-brain-agenda)
+
+;; refile
+; Use full outline paths for refile targets - we file directly with IDO
+(setq org-refile-use-outline-path t)
+(setq org-outline-path-complete-in-steps nil)
 
 ;; export markdown
 (eval-after-load "org"
   '(require 'ox-md nil t))
-
-;; ;; export
-;; (setq org-export-default-language "zh_CN")
-;; (setq org-html-head-include-default-style nil)
-
-;; (setq org-publish-project-alist
-;;       '(("website"
-;;          :author "贤民"
-;;          :email "xianmin12@qq.com"
-;;          :language "zh_CN"
-;;          :base-directory "~/Write/Xm-Website/src/"
-;;          :publishing-directory "~/Write/Xm-Website/"
-;;          :base-extension "org"
-;;          :exclude "^data\\|^draft\\|^gtd"
-;;          :recursive t
-;;          :publishing-function org-html-publish-to-html
-;;          :section-numbers nil
-;;          :html-head "<link rel=\"stylesheet\"
-;;                        href=\"style.css\" type=\"text/css\"/>"
-;;          :html-postamble "<!-- Duoshuo Comment BEGIN -->
-;;     <div class=\"ds-thread\"></div>
-;;     <script type=\"text/javascript\">
-;;     var duoshuoQuery = {short_name:\"xianmin\"};
-;;     (function() {
-;;              var ds = document.createElement('script');
-;;              ds.type = 'text/javascript';ds.async = true;
-;;              ds.src = 'http://static.duoshuo.com/embed.js';
-;;              ds.charset = 'UTF-8';
-;;              (document.getElementsByTagName('head')[0]
-;;                                            || document.getElementsByTagName('body')[0]).appendChild(ds);
-;;                                            })();
-;;                                            </script>
-;;                                            <!-- Duoshuo Comment END -->
-;; <div class='footer'>
-;; Copyright 2014 %a.<br>
-;; Last updated %C. <br>
-;; Built with %c.
-;; </div>"
-;;          )
-;;         ("web"
-;;          :components ("website"))
-;;         ))
 
 
 (setq org-todo-keywords '((sequence "TODO(t)" "|" "DONE(d)")
@@ -90,24 +55,15 @@
         ))
 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/Write/0-GTD/0-gtd.org" "INBOX")
-         "* TODO %?")
-        ("j" "Journal" entry (file "~/Write/journal.org")
+      '(("t" "Todo" entry (file+headline "~/Write/brain/GTD.org" "INBOX")
+         "* TODO %?\n%U\n%a\n")
+        ("j" "Journal" entry (file "~/Write/brain/Journal.org")
          "* %u %?")))
 
 ;; from http://stackoverflow.com/questions/1218238/how-to-make-part-of-a-word-bold-in-org-mode
 ;; (setcar org-emphasis-regexp-components " \t('\"{[:alpha:]")
 ;; (setcar (nthcdr 1 org-emphasis-regexp-components) "[:alpha:]- \t.,:!?;'\")}\\")
 ;; (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
-
-;; blog
-;;  (require 'blog-admin)
-
-;; (setq blog-admin-backend-type 'nikola)
-;; (setq blog-admin-backend-path "~/Write/blog")
-;; (setq blog-admin-backend-new-post-in-drafts t)
-;; (setq blog-admin-backend-nikola-executable "/home/xm/.virtualenvs/python3/bin/nikola") ;; path to nikola executable
-;; (setq blog-admin-backend-nikola-config-file "conf.py") ;; conf.py is default
 
 ;; load-file
 (push "~/.emacs.d/xm/" load-path)

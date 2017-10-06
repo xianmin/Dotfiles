@@ -76,4 +76,4 @@
 
 (provide 'site-publish)
 
-;;; blog-publish.el ends here
+;;; site-publish.el ends here
