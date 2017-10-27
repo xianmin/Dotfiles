@@ -39,12 +39,12 @@
   (use-package easy-hugo
     :init
     (progn
-      (setq easy-hugo-basedir "~/test/quickstart/")
-      (setq easy-hugo-url "https://xianmin.org")
+      (setq easy-hugo-basedir "~/Write/blog/")
+      (setq easy-hugo-url "http://xianmin.org")
       (setq easy-hugo-previewtime "300")
       (spacemacs/set-leader-keys "ah" 'easy-hugo)
-      (setq easy-hugo-default-ext ".org")
-      (setq easy-hugo-postdir "content/posts")
+      (setq easy-hugo-default-ext ".md")
+      (setq easy-hugo-postdir "content/post")
       )))
 
 ;;; packages.el ends here

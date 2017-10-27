@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-SITE="$HOME/Write/1-site"
-PUBLISH="$HOME/Write/2-publish"
+SITE="$HOME/Write/blog"
+PUBLISH="$HOME/Write/blog/public"
 
 cd $SITE
+hugo
 described_rev=$(git rev-parse HEAD | git name-rev --stdin)
 git add .
 git commit -m "pages built at $described_rev"

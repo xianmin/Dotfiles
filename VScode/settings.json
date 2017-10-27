@@ -2,7 +2,6 @@
 {
     "update.channel": "none",
     "files.autoSave": "afterDelay",
-    "workbench.colorTheme": "Visual Studio Dark",
     "editor.fontSize": 16,
     "editor.renderWhitespace": "boundary",
     "editor.cursorStyle": "block",
@@ -16,8 +15,33 @@
     "editor.dragAndDrop": true,
     "extensions.autoUpdate": true,
     "workbench.iconTheme": "vs-seti",
-    "vim.disableAnnoyingNeovimMessage": true,
-    "vim.overrideCopy": false,
-    "vim.insertModeKeyBindings": [],
-    "editor.tabSize": 2
+    // "vim.disableAnnoyingNeovimMessage": true,
+    // "vim.overrideCopy": false,
+    // "vim.insertModeKeyBindings": [],
+    "editor.tabSize": 2,
+    "typescript.tsserver.log": "verbose",
+
+    // Global Launch Configuration
+    "launch": {
+        "version": "0.2.0",
+        "configurations": [
+            {
+                "type": "node",
+                "request": "launch",
+                "name": "Launch Program",
+                "program": "${file}"
+            },
+            {
+                "type": "chrome",
+                "request": "launch",
+                "name": "启动一个独立的 Chrome 以调试 frontend",
+                "url": "http://localhost:8091",
+                "webRoot": "${workspaceRoot}"
+            }
+        ]
+    },
+    // "typescript.check.tscVersion": false,
+    "workbench.colorTheme": "Default Light+",
+    "guides.enabled": false,
+    "editor.minimap.enabled": false
 }
