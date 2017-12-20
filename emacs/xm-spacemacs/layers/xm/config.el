@@ -32,6 +32,7 @@
 ;;;; org-mode
 ;; Custom Key Bindings
 (global-set-key (kbd "<f12>") 'org-brain-agenda)
+;; (setq org-image-actual-width '(400))  ;; 控制在 orgmode 中显示图片的大小为 400 px
 
 ;; refile
 ; Use full outline paths for refile targets - we file directly with IDO
@@ -52,13 +53,47 @@
         ("DONE" :foreground "forest green" :weight bold)
         ("WAITING" :foreground "magenta" :weight bold)
         ("CANCELED" :foreground "dim gray" :weight bold)
+        ("READING" :foreground "red" :weight bold)
         ))
 
 (setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/Write/brain/GTD.org" "INBOX")
+      '(("t" "Todo" entry (file+headline "~/Dropbox/Write/brain/GTD.org" "INBOX")
          "* TODO %?\n%U\n%a\n")
-        ("j" "Journal" entry (file "~/Write/brain/Journal.org")
+        ("j" "Journal" entry (file "~/Dropbox/Write/brain/Journal.org")
          "* %u %?")))
+
+
+;; org-hugo capture
+(with-eval-after-load 'org-capture
+  (defun org-hugo-new-subtree-post-capture-template ()
+    "Returns `org-capture' template string for new Hugo post.
+See `org-capture-templates' for more information."
+    (let* (;; http://www.holgerschurig.de/en/emacs-blog-from-org-to-hugo/
+           (date (format-time-string (org-time-stamp-format :long :inactive) (org-current-time)))
+           (title (read-from-minibuffer "Post Title: ")) ;Prompt to enter the post title
+           (fname (org-hugo-slug title)))
+      (mapconcat #'identity
+                 `(
+                   ,(concat "** TODO " title "     :@essay:")
+                   ":PROPERTIES:"
+                   ,(concat ":EXPORT_FILE_NAME: " fname)
+                   ;; ,(concat ":EXPORT_DATE: " date) ;Enter current date and time
+                   ":END:"
+                   "%?\n")          ;Place the cursor here finally
+                 "\n")))
+
+  (add-to-list 'org-capture-templates
+               '("h"                ;`org-capture' binding + h
+                 "Hugo post"
+                 entry
+                 ;; It is assumed that below file is present in `org-directory'
+                 ;; and that it has a "Blog Ideas" heading. It can even be a
+                 ;; symlink pointing to the actual location of all-posts.org!
+                 (file+headline "~/Dropbox/Write/blog/orgpost/0000-posts.org" "INBOX")
+                 (function org-hugo-new-subtree-post-capture-template))))
+
+(spacemacs/set-leader-keys "av" 'org-capture)
+
 
 ;; from http://stackoverflow.com/questions/1218238/how-to-make-part-of-a-word-bold-in-org-mode
 ;; (setcar org-emphasis-regexp-components " \t('\"{[:alpha:]")
@@ -70,5 +105,7 @@
 (require 'auto-save)            ;; 加载自动保存模块
 (auto-save-enable)              ;; 开启自动保存功能
 (setq auto-save-slient t)       ;; 自动保存的时候静悄悄的， 不要打扰我
+
+(require 'chinese-font)
 
 (require 'site-publish)

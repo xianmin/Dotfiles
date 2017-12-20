@@ -14,7 +14,7 @@
     "editor.fontLigatures": true,
     "editor.dragAndDrop": true,
     "extensions.autoUpdate": true,
-    "workbench.iconTheme": "vs-seti",
+    "workbench.iconTheme": "vscode-great-icons",
     // "vim.disableAnnoyingNeovimMessage": true,
     // "vim.overrideCopy": false,
     // "vim.insertModeKeyBindings": [],
@@ -40,8 +40,13 @@
             }
         ]
     },
-    // "typescript.check.tscVersion": false,
+    // "guides.enabled": false,
+    "editor.minimap.enabled": true,
+    "workbench.panel.location": "bottom",
+    "workbench.activityBar.visible": true,
     "workbench.colorTheme": "Default Light+",
-    "guides.enabled": false,
-    "editor.minimap.enabled": false
+    "zenMode.fullScreen": false,
+    "window.menuBarVisibility": "toggle",
+    "editor.multiCursorModifier": "ctrlCmd",
+    "editor.rulers": [80],
 }

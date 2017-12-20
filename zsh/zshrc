@@ -87,16 +87,17 @@ alias ec="emacsclient"
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+## python virtualenv
+# export WORKON_HOME=$HOME/.virtualenvs
+# export PROJECT_HOME=$HOME/Devel
+# source /usr/local/bin/virtualenvwrapper.sh
 
 # export PATH="/home/xm/.pyenv/bin:$PATH"
 # eval "$(pyenv init -)"
 # eval "$(pyenv virtualenv-init -)"
 
 # add qt lib
-export LD_LIBRARY_PATH=/home/xm/Software/qt-5.8.0/5.8/gcc_64/lib
+# export LD_LIBRARY_PATH=/home/xm/Software/qt-5.8.0/5.8/gcc_64/lib
 
 
 # added by Anaconda3 4.1.1 installer

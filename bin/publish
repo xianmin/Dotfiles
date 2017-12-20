@@ -5,10 +5,10 @@ PUBLISH="$HOME/Write/blog/public"
 
 cd $SITE
 hugo
-described_rev=$(git rev-parse HEAD | git name-rev --stdin)
-git add .
-git commit -m "pages built at $described_rev"
-git push origin master
+# described_rev=$(git rev-parse HEAD | git name-rev --stdin)
+# git add .
+# git commit -m "pages built at $described_rev"
+# git push origin master
 
 
 cd $PUBLISH
