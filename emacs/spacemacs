@@ -295,6 +295,9 @@ you should place your code here."
   ;; powerline 样式
   (setq powerline-default-separator nil)
 
+  ;; powerline 样式
+  (setq powerline-default-separator nil)
+
   ;; change insert-state to emacs-state
   ;; (defalias 'evil-insert-state 'evil-emacs-state)
 
