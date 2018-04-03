@@ -48,5 +48,14 @@
     "zenMode.fullScreen": false,
     "window.menuBarVisibility": "toggle",
     "editor.multiCursorModifier": "ctrlCmd",
-    "editor.rulers": [80],
+    "editor.rulers": [
+        80
+    ],
+    "files.associations": {
+        "*.wxml": "html",
+        "*.wxss": "css"
+    },
+    "[plaintext]": {
+    
+  },
 }

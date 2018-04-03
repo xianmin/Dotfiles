@@ -1,6 +1,6 @@
 [user]
-	email = xianmin12@qq.com
-	name = Xianmin Chen
+	email = xianmin12@gmail.com
+	name =  Chen Xianmin
 [push]
     default = matching
 [core]
@@ -13,3 +13,7 @@
     tool = default-difftool
 [difftool "default-difftool"]
     cmd = code --wait --diff $LOCAL $REMOTE
+[merge]
+	tool = vscode
+[mergetool "vscode"]
+	cmd = "code --wait "

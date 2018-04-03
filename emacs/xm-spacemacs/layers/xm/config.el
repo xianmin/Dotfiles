@@ -34,6 +34,10 @@
 (global-set-key (kbd "<f12>") 'org-brain-agenda)
 ;; (setq org-image-actual-width '(400))  ;; 控制在 orgmode 中显示图片的大小为 400 px
 
+;; orgmode 编辑 src 会空两格的问题
+(setq org-edit-src-content-indentation 0)
+(setq org-src-tab-acts-natively t)
+
 ;; refile
 ; Use full outline paths for refile targets - we file directly with IDO
 (setq org-refile-use-outline-path t)
@@ -74,7 +78,7 @@ See `org-capture-templates' for more information."
            (fname (org-hugo-slug title)))
       (mapconcat #'identity
                  `(
-                   ,(concat "** TODO " title "     :@essay:")
+                   ,(concat "** TODO " title "     :@随笔:")
                    ":PROPERTIES:"
                    ,(concat ":EXPORT_FILE_NAME: " fname)
                    ;; ,(concat ":EXPORT_DATE: " date) ;Enter current date and time

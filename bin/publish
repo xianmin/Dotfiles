@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
-SITE="$HOME/Write/blog"
-PUBLISH="$HOME/Write/blog/public"
+SITE="$HOME/Dropbox/Write/blog"
+PUBLISH="$HOME/Dropbox/Write/blog/public"
 
 cd $SITE
 hugo
