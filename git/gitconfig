@@ -1,10 +1,10 @@
 [user]
-	email = xianmin12@gmail.com
-	name =  Chen Xianmin
+    email = xianmin12@gmail.com
+    name =  Chen Xianmin
 [push]
     default = matching
 [core]
-	editor = code --wait
+    editor = code --wait
     excludesfile = ~/.gitignore
 
 # 参考：https://gist.github.com/pksunkara/988716
@@ -14,12 +14,19 @@
 [difftool "default-difftool"]
     cmd = code --wait --diff $LOCAL $REMOTE
 [merge]
-	tool = vscode
+    tool = vscode
 [mergetool "vscode"]
-	cmd = "code --wait "
+    cmd = "code --wait "
 
 # 为 github 设置代理，速度更快
 [http "https://github.com"]
-	proxy = socks5://127.0.0.1:9898
+    proxy = socks5://127.0.0.1:9898
 [url "https://github.com/"]
-	insteadOf = git://github.com/
+    insteadOf = git://github.com/
+
+[diff "minjs"]
+        textconv = js-beautify
+        cachetextconv = true
+[diff "mincss"]
+        textconv = js-beautify --css
+        cachetextconv = true
