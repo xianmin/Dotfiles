@@ -31,6 +31,7 @@ values."
      ;; <M-m f e R> (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :disabled-for org git)
+     ;; auto-completion
      ;; better-defaults
      emacs-lisp
      ;; (chinese :variables
@@ -346,6 +347,19 @@ you should place your code here."
 
   (setq org-image-actual-width '(400))  ;; 控制在 orgmode 中显示图片的大小为 400 px
 
+  (global-company-mode)
+  ;; load-file
+  (push "~/.emacs.d/xm/" load-path)
+  (require 'auto-save)            ;; 加载自动保存模块
+  (auto-save-enable)              ;; 开启自动保存功能
+  (setq auto-save-slient t)       ;; 自动保存的时候静悄悄的， 不要打扰我
+
+  (require 'chinese-font)
+
+  (require 'site-publish)
+
+  (require 'company-english-helper)
+  (global-set-key (kbd "C-.") 'toggle-company-english-helper)
 
   )
 
@@ -361,6 +375,7 @@ you should place your code here."
     ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088" default)))
  '(org-hugo-auto-set-lastmod t)
  '(org-hugo-default-section-directory "post")
+ '(org-hugo-use-code-for-kbd t)
  '(package-selected-packages
    (quote
     (winum org-mime fuzzy emoji-cheat-sheet-plus company-emoji ox-hugo pinyinlib yaml-mode toml-mode racer cargo rust-mode easy-hugo org web-beautify livid-mode skewer-mode simple-httpd json-mode json-snatcher json-reformat js2-refactor multiple-cursors js2-mode js-doc company-tern dash-functional tern coffee-mode helm-company helm-c-yasnippet company-web web-completion-data company-statistics company-anaconda company auto-yasnippet ac-ispell auto-complete deft org-brain yapfify xterm-color ws-butler writeroom-mode window-numbering which-key web-mode volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package toc-org tagedit spacemacs-theme spaceline smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs rainbow-delimiters quelpa pyvenv pytest pyenv-mode py-isort pug-mode popwin pip-requirements phpunit phpcbf php-extras php-auto-yasnippets persp-mode pcre2el paradox pangu-spacing orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file neotree multi-term move-text mmm-mode markdown-toc magit-gitflow macrostep lorem-ipsum live-py-mode linum-relative link-hint less-css-mode info+ indent-guide imenu-list ido-vertical-mode hy-mode hungry-delete htmlize hl-todo highlight-parentheses highlight-numbers highlight-indentation help-fns+ helm-themes helm-swoop helm-pydoc helm-projectile helm-mode-manager helm-make helm-gitignore helm-flx helm-descbinds helm-css-scss helm-ag google-translate golden-ratio gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flx-ido find-by-pinyin-dired fill-column-indicator fcitx fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu eshell-z eshell-prompt-extras esh-help emmet-mode elisp-slime-nav dumb-jump drupal-mode define-word dactyl-mode cython-mode column-enforce-mode clean-aindent-mode chinese-pyim auto-highlight-symbol auto-compile anaconda-mode aggressive-indent adaptive-wrap ace-window ace-pinyin ace-link ace-jump-helm-line)))

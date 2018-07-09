@@ -57,5 +57,9 @@
     },
     "[plaintext]": {
     
-  },
+},
+"gitlens.keymap": "chorded",
+"gitlens.advanced.messages": {
+    "suppressShowKeyBindingsNotice": true
+},
 }

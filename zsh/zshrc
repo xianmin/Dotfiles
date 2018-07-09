@@ -83,7 +83,7 @@ export LC_CTYPE="zh_CN.UTF-8"
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-alias ec="emacsclient"
+alias ec="emacsclient -nq"
 alias zshconfig="vim ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
