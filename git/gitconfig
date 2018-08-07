@@ -19,10 +19,10 @@
     cmd = "code --wait "
 
 # 为 github 设置代理，速度更快
-[http "https://github.com"]
-    proxy = socks5://127.0.0.1:9898
-[url "https://github.com/"]
-    insteadOf = git://github.com/
+# [http "https://github.com"]
+#     proxy = socks5://127.0.0.1:9898
+# [url "https://github.com/"]
+#     insteadOf = git://github.com/
 
 [diff "minjs"]
         textconv = js-beautify
