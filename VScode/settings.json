@@ -62,4 +62,14 @@
 "gitlens.advanced.messages": {
     "suppressShowKeyBindingsNotice": true
 },
+"guides.enabled": false,
+"sync.gist": "379fae88701e712e9c10b43ca6f7f242",
+"sync.quietSync": false,
+"sync.removeExtensions": true,
+"sync.syncExtensions": true,
+"sync.autoDownload": false,
+"sync.autoUpload": false,
+"sync.forceDownload": false,
+"breadcrumbs.enabled": true,
+"markdown.previewFrontMatter": "show",
 }

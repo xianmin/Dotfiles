@@ -6,7 +6,7 @@ rsync -avzh ~/Config /media/xm/黑甲虫/
 rsync -avzh ~/Dotfiles /media/xm/黑甲虫/
 rsync -avzh ~/Photo /media/xm/黑甲虫/
 rsync -avzh ~/Pictures /media/xm/黑甲虫/
-rsync -avzh ~/Project /media/xm/黑甲虫/
-rsync -avzh ~/Software /media/xm/黑甲虫/
-rsync -avzh ~/Source /media/xm/黑甲虫/
-rsync -avzh ~/Write /media/xm/黑甲虫/
+rsync -avzh ~/Project/WORK /media/xm/黑甲虫/Project
+# rsync -avzh ~/Software /media/xm/黑甲虫/
+# rsync -avzh ~/Source /media/xm/黑甲虫/
+# rsync -avzh ~/Write /media/xm/黑甲虫/
