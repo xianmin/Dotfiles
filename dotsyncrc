@@ -70,7 +70,7 @@ vim/vimperatorrc
 zsh/oh-my-zsh
 #zsh/zlogin
 #zsh/zlogout
-#zsh/zprofile
+zsh/zprofile
 #zsh/zshenv
 zsh/zshrc
 js/jsbeautifyrc
