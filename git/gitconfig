@@ -30,3 +30,7 @@
 [diff "mincss"]
         textconv = js-beautify --css
         cachetextconv = true
+[init]
+	templatedir = /home/xm/.git-templates
+[cola]
+	spellcheck = false

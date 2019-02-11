@@ -284,6 +284,9 @@ you should place your code here."
   ;; (setq tramp-ssh-controlmaster-options
   ;;       "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
 
+  ;; disable line highlighting
+  (global-hl-line-mode -1)
+
   ;; 退出 emacs 的时候saving to x clipboard manager要卡很久
   (setq x-select-enable-clipboard-manager nil)
   (global-set-key (kbd "C-y") 'x-clipboard-yank)
