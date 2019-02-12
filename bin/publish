@@ -15,4 +15,4 @@ cd $PUBLISH
 described_rev=$(git rev-parse HEAD | git name-rev --stdin)
 git add .
 git commit -m "pages built at $described_rev"
-git push origin coding-pages
+git push origin master
