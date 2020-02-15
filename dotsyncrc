@@ -17,7 +17,7 @@ DOTFILES=Dotfiles
 #
 [files]
 dotsyncrc
-# emacs/xm-spacemacs:.emacs.d
+emacs/xm-spacemacs.d:.spacemacs.d
 # emacs/spacemacs
 #ack/ackrc
 #aptitude
