@@ -72,13 +72,12 @@
 "sync.forceDownload": false,
 "breadcrumbs.enabled": true,
 "markdown.previewFrontMatter": "show",
-"github.hosts": [
-    {
-        "host": "https://github.com",
-        "username": "oauth",
-        "token": "system"
-    }
-],
 "git.autofetch": true,
 "diffEditor.ignoreTrimWhitespace": false,
+"eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "vue"
+],
+"files.insertFinalNewline": true,
 }
