@@ -15,7 +15,7 @@ ZSH_THEME="xm-blinks"
 # HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
@@ -49,7 +49,7 @@ ZSH_CUSTOM=$HOME/Dotfiles/zsh/custom
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump git-extras fzf globalias command-not-found common-aliases)
+plugins=(git autojump git-extras fzf globalias command-not-found common-aliases conda-zsh-completion)
 
 # User configuration
 
@@ -89,21 +89,9 @@ alias zshconfig="vim ~/.zshrc"
 alias h="cht.sh"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-## python virtualenv
-# export WORKON_HOME=$HOME/.virtualenvs
-# export PROJECT_HOME=$HOME/Devel
-# source /usr/local/bin/virtualenvwrapper.sh
-
-# export PATH="/home/xm/.pyenv/bin:$PATH"
-# eval "$(pyenv init -)"
-# eval "$(pyenv virtualenv-init -)"
-
 # add qt lib
 # export LD_LIBRARY_PATH=/home/xm/Software/qt-5.8.0/5.8/gcc_64/lib
 
-
-# added by Anaconda3 4.1.1 installer
-# export PATH="/home/xm/Software/anaconda3/bin:$PATH"
 
 # 历史记录设置
 HISTSIZE=10000
@@ -137,28 +125,40 @@ alias cnpm="npm --registry=https://registry.npm.taobao.org \
   --cache=$HOME/.npm/.cache/cnpm \
   --disturl=https://npm.taobao.org/dist \
   --userconfig=$HOME/.cnpmrc"
-NPM_PACKAGES=$HOME/.npm-packages
-NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
-PATH="$NPM_PACKAGES/bin:$PATH"
 export ELECTRON_MIRROR="https://npm.taobao.org/mirrors/electron/"
 export SASS_BINARY_SITE="https://npm.taobao.org/mirrors/node-sass"
+
+# npm
+# NPM_PACKAGES=$HOME/.npm-packages
+# NODE_PATH="$NPM_PACKAGES/lib/node_modules:$NODE_PATH"
+# PATH="$NPM_PACKAGES/bin:$PATH"
 
 # fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-# added by Anaconda3 2018.12 installer
-# >>> conda init >>>
+
+# nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
+# >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$(CONDA_REPORT_ERRORS=false '/home/xm/Software/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+__conda_setup="$('/home/xm/Software/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    \eval "$__conda_setup"
+    eval "$__conda_setup"
 else
     if [ -f "/home/xm/Software/anaconda3/etc/profile.d/conda.sh" ]; then
         . "/home/xm/Software/anaconda3/etc/profile.d/conda.sh"
-        CONDA_CHANGEPS1=false conda activate base
     else
-        \export PATH="/home/xm/Software/anaconda3/bin:$PATH"
+        export PATH="/home/xm/Software/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
-# <<< conda init <<<
+# <<< conda initialize <<<
+
+# conda-zsh-completion
+autoload -U compinit && compinit
+zstyle ':completion::complete:*' use-cache 1  # To activate the completion cache for packages
+zstyle ":conda_zsh_completion:*" use-groups true  # To display subcommand completion in groups
