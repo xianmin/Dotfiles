@@ -96,7 +96,7 @@ alias h="cht.sh"
 # 历史记录设置
 HISTSIZE=10000
 SAVEHIST=10000
- 
+
 # 不保留重复的历史记录项
 setopt hist_ignore_all_dups
 # 在命令前添加空格，不将此命令添加到记录文件中
@@ -141,6 +141,11 @@ export SASS_BINARY_SITE="https://npm.taobao.org/mirrors/node-sass"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# n
+# https://github.com/tj/n#optional-environment-variables
+export N_PREFIX=$HOME/.n
+export PATH=$N_PREFIX/bin:$PATH
 
 
 # >>> conda initialize >>>
