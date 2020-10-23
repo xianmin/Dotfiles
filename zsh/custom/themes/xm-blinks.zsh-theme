@@ -8,6 +8,26 @@ function _prompt_char() {
   fi
 }
 
+# Display current virtual environment
+prompt_virtualenv() {
+  local env='';
+
+  # if "$CONDA_DEFAULT_ENV" variable exists,
+  # then you are using conda to manage python virtual env
+  if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+    env="$CONDA_DEFAULT_ENV"
+  elif [[ -n "$VIRTUAL_ENV" ]]; then
+    env="$VIRTUAL_ENV"
+  fi
+
+  if [[ -n $env ]]; then
+    # color=cyan
+    # prompt_segment $color $PRIMARY_FG
+    # print -Pn " $(basename $env) "
+    echo "%{%F{blue}%}($(basename $env))%{%f%k%b%}"
+  fi
+}
+
 # This theme works with both the "dark" and "light" variants of the
 # Solarized color schema.  Set the SOLARIZED_THEME variable to one of
 # these two values to choose.  If you don't specify, we'll assume you're
@@ -25,6 +45,7 @@ ZSH_THEME_GIT_PROMPT_CLEAN=""
 
 PROMPT='%{%f%k%b%}
 %{%K{${bkg}}%B%F{green}%}%n%{%B%F{blue}%}@%{%B%F{cyan}%}%m%{%B%F{green}%} %{%b%F{yellow}%K{${bkg}}%}%~%{%B%F{green}%}$(git_prompt_info)%E%{%f%k%b%}
-%{%K{${bkg}}%}$(_prompt_char)%{%K{${bkg}}%} %#%{%f%k%b%} '
+%{%K{${bkg}}%}$(_prompt_char) %#%{%f%k%b%} '
 
-RPROMPT='!%{%B%F{cyan}%}%!%{%f%k%b%}'
+RPROMPT='%{$fg[green]%}$(prompt_virtualenv)%{$reset_color%}%'
+# RPROMPT='!%{%B%F{cyan}%}%!%{%f%k%b%}'
