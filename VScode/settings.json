@@ -63,12 +63,12 @@
     "suppressShowKeyBindingsNotice": true
 },
 "guides.enabled": false,
-"sync.gist": "379fae88701e712e9c10b43ca6f7f242",
+"sync.gist": "",
 "sync.quietSync": false,
-"sync.removeExtensions": true,
+"sync.removeExtensions": false,
 "sync.syncExtensions": true,
-"sync.autoDownload": false,
-"sync.autoUpload": false,
+"sync.autoDownload": true,
+"sync.autoUpload": true,
 "sync.forceDownload": false,
 "breadcrumbs.enabled": true,
 "markdown.previewFrontMatter": "show",
@@ -80,4 +80,9 @@
     "vue"
 ],
 "files.insertFinalNewline": true,
+"workbench.startupEditor": "welcomePage",
+"terminal.integrated.inheritEnv": false,
+"terminal.integrated.shell.linux": "/usr/bin/zsh",
+"workbench.commandPalette.history": 0,
+"sync.forceUpload": false,
 }

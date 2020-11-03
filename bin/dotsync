@@ -101,16 +101,13 @@ getfiles()
     exit 1
   fi
 }
-
 getrealdotfile()
 {
   SRCFILE=$(echo $file | awk -F: '{print $1}')
   DSTFILE=$(echo $file | awk -F: '{print $2}')
-
   if [[ $DSTFILE = "" ]]; then
     DSTFILE=".$(basename "$SRCFILE")"
   fi
-
   if [[ -e "$HOME/$DOTFILES/$SRCFILE.d/localhost" ]]; then
     REALFILE="$HOME/$DOTFILES/$SRCFILE.d/localhost"
   elif [[ -e "$HOME/$DOTFILES/$SRCFILE.d/$HOSTNAME" ]]; then
@@ -122,10 +119,9 @@ getrealdotfile()
   else
     REALFILE="$HOME/$DOTFILES/$SRCFILE"
   fi
-
   DOTFILE="$HOME/$DSTFILE"
+  DOTFILE_DIR=$(dirname "${DOTFILE}")
 }
-
 initlocal()
 {
   cd "$HOME/$DOTFILES"
@@ -134,7 +130,6 @@ initlocal()
   git submodule $GITSUBOPT update --init --recursive
   cd
 }
-
 getgitorigin()
 {
   cd "$HOME/$DOTFILES"
@@ -143,7 +138,6 @@ getgitorigin()
   fi
   cd
 }
-
 symlink()
 {
   removebrokenlinks
@@ -151,7 +145,6 @@ symlink()
   echo "*** Symlinking dotfiles from $HOME/$DOTFILES to $HOME on $HOSTNAME ***"
   for file in $SRCFILES ; do
     getrealdotfile "$file"
-
     if [[ -e "$DOTFILE" ]] && [[ ! -h "$DOTFILE" ]]; then
       BACKUP="$BACKUPDIR/$(basename "$file")"
       echo "*** $DOTFILE already exists, backing up in $BACKUP ***"
@@ -169,9 +162,9 @@ symlink()
       rm -f "$DOTFILE"
       ln -s "$REALFILE" "$DOTFILE"
     else
+      mkdir -p "$DOTFILE_DIR"
       ln -s "$REALFILE" "$DOTFILE"
     fi
-
     if [[ -e /selinux/enforce ]]; then
       if [[ "$DOTFILE" == "$HOME/.ssh" && -x /sbin/restorecon ]]; then
         if [[ "$VERBOSE" == True ]]; then
@@ -186,8 +179,6 @@ symlink()
   done
   removebrokenlinks
 }
-
-
 gitremote()
 {
   getgitorigin
@@ -219,7 +210,6 @@ gitremote()
     fi
   done
 }
-
 validhosttype()
 {
   chktype=$1
@@ -246,7 +236,6 @@ validhosttype()
     exit 1
   fi
 }
-
 validhost()
 {
   chkhost=$1
@@ -271,8 +260,6 @@ validhost()
     exit 1
   fi
 }
-
-
 gethosts()
 {
   type=$1
@@ -295,7 +282,6 @@ gethosts()
     done
   fi
 }
-
 shellremote()
 {
   if [[ "$1" == "all" ]]; then
@@ -320,7 +306,6 @@ shellremote()
     fi
   done
 }
-
 rsyncremote()
 {
   if [[ "$1" == "all" ]]; then
@@ -348,7 +333,6 @@ rsyncremote()
   done
   cd
 }
-
 gitpull()
 {
   getgitorigin
@@ -366,7 +350,6 @@ gitpull()
   fi
   cd
 }
-
 gitcommit()
 {
   getgitorigin
@@ -375,7 +358,6 @@ gitcommit()
   git commit -a $GITOPT
   cd
 }
-
 gitpush()
 {
   getgitorigin
@@ -384,7 +366,6 @@ gitpush()
     git push $GITOPT
   cd
 }
-
 removebrokenlinks()
 {
   if [[ "$VERBOSE" == True ]]; then
@@ -392,7 +373,6 @@ removebrokenlinks()
   fi
   find $HOME -maxdepth 1 -name ".*" -type l | while read f; do if [ ! -e "$f"  ]; then rm -f "$f"; fi; done
 }
-
 isgitlayout()
 {
   if [[ ! -d .git ]]; then
@@ -400,15 +380,11 @@ isgitlayout()
     exit 1
   fi
 }
-
 usage()
 {
   cat << EOF
-
   WARNING: This could stop you being able to login to remote hosts!
-
   Actions:
-
   -l          - List configured hosts and dotfiles to symlink
   -I          - Initialise a machine using dotsync
   -L          - Symlink available dotfiles into \$HOME
@@ -417,29 +393,21 @@ usage()
   -P          - Push any local changes back to the repo (git only)
   -c          - Run an arbitrary shell command on all known machines
   -g          - Same as -c, but only on git configured machines
-
     Remote Hosts:
-
     -H host     - Perform action against host listed in config, can be 'ALL'
       -r          - Use rsync instead of git
       -K          - Automatically add unknown hosts to known_hosts rather than ask
-
   Update everything:
-
   -a          - Updates dotfiles on all known machines
   -A          - Updates dotfiles and submodules on all known machines
-
   Extras:
-
   -f conf     - Config file, defaults to '~/.dotsyncrc' or '\$DOTSYNCRC'
   -d dotfiles - Location of dotfiles, defaults to '~/.dotfiles'
   -v          - Verbose
   -V          - Version
   -h          - Show help message
-
 EOF
 }
-
 listconfig()
 {
   echo "dotsync $DOTSYNC_VERSION configuration:"
@@ -487,7 +455,6 @@ listconfig()
     echo
   fi
 }
-
 options()
 {
   (( $# )) || usage
@@ -570,9 +537,7 @@ options()
         ;;
     esac
   done
-
 }
-
 init()
 {
   if [[ -z $SERVER ]]; then
@@ -586,7 +551,6 @@ init()
   fi
   exit
 }
-
 update()
 {
   if [[ -z $SERVER ]]; then
@@ -601,13 +565,11 @@ update()
   fi
   exit
 }
-
 checkin()
 {
   gitcommit && gitpush
   exit
 }
-
 allhosts()
 {
   gitremote all pull $ALLOPT
@@ -627,7 +589,6 @@ allhosts()
   fi
   exit
 }
-
 doaction()
 {
   # Do stuff
@@ -665,11 +626,9 @@ doaction()
       ;;
   esac
 }
-
 # MAIN
 checknotroot
+options "${@}"
 getconfig
 checkdirs
-options "${@}"
 doaction
-

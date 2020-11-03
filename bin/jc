@@ -1,0 +1,455 @@
+[38;5;246m#!/usr/bin/env bash[39m
+[38;5;246m# First line of the script is the shebang which tells the system how to execute[39m
+[38;5;246m# the script: http://en.wikipedia.org/wiki/Shebang_(Unix)[39m
+[38;5;246m# As you already figured, comments start with #. Shebang is also a comment.[39m
+
+[38;5;246m# Simple hello world example:[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252mHello[39m[38;5;252m [39m[38;5;252mworld![39m[38;5;252m [39m[38;5;246m# => Hello world![39m
+
+[38;5;246m# Each command starts on a new line, or after a semicolon:[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m'This is the first line'[39m[38;5;252m;[39m[38;5;252m [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m'This is the second line'[39m
+[38;5;246m# => This is the first line[39m
+[38;5;246m# => This is the second line[39m
+
+[38;5;246m# Declaring a variable looks like this:[39m
+[38;5;87mVariable[39m[38;5;252m=[39m[38;5;214m"Some string"[39m
+
+[38;5;246m# But not like this:[39m
+[38;5;87mVariable[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m [39m[38;5;214m"Some string"[39m[38;5;252m [39m[38;5;246m# => returns error "Variable: command not found"[39m
+[38;5;246m# Bash will decide that Variable is a command it must execute and give an error[39m
+[38;5;246m# because it can't be found.[39m
+
+[38;5;246m# Nor like this:[39m
+[38;5;87mVariable[39m[38;5;252m=[39m[38;5;252m [39m[38;5;214m'Some string'[39m[38;5;252m [39m[38;5;246m# => returns error: "Some string: command not found"[39m
+[38;5;246m# Bash will decide that 'Some string' is a command it must execute and give an[39m
+[38;5;246m# error because it can't be found. (In this case the 'Variable=' part is seen[39m
+[38;5;246m# as a variable assignment valid only for the scope of the 'Some string'[39m
+[38;5;246m# command.)[39m
+
+[38;5;246m# Using the variable:[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;87m$Variable[39m[38;5;252m [39m[38;5;246m# => Some string[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Variable[39m[38;5;214m"[39m[38;5;252m [39m[38;5;246m# => Some string[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m'$Variable'[39m[38;5;252m [39m[38;5;246m# => $Variable[39m
+[38;5;246m# When you use the variable itself — assign it, export it, or else — you write[39m
+[38;5;246m# its name without $. If you want to use the variable's value, you should use $.[39m
+[38;5;246m# Note that ' (single quote) won't expand the variables![39m
+
+[38;5;246m# Parameter expansion ${ }:[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;87mVariable[39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => Some string[39m
+[38;5;246m# This is a simple usage of parameter expansion[39m
+[38;5;246m# Parameter Expansion gets a value from a variable.[39m
+[38;5;246m# It "expands" or prints the value[39m
+[38;5;246m# During the expansion time the value or parameter can be modified[39m
+[38;5;246m# Below are other modifications that add onto this expansion[39m
+
+[38;5;246m# String substitution in variables[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;87mVariable[39m[38;5;252m/Some/A[39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => A string[39m
+[38;5;246m# This will substitute the first occurrence of "Some" with "A"[39m
+
+[38;5;246m# Substring from a variable[39m
+[38;5;87mLength[39m[38;5;252m=[39m[38;5;67m7[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;87mVariable[39m[38;5;252m:[39m[38;5;87m0[39m[38;5;252m:[39m[38;5;87mLength[39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => Some st[39m
+[38;5;246m# This will return only the first 7 characters of the value[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;87mVariable[39m[38;5;252m:[39m[38;5;252m -5[39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => tring[39m
+[38;5;246m# This will return the last 5 characters (note the space before -5)[39m
+
+[38;5;246m# String length[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${#[39m[38;5;87mVariable[39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => 11[39m
+
+[38;5;246m# Indirect expansion[39m
+[38;5;87mOtherVariable[39m[38;5;252m=[39m[38;5;214m"Variable"[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;252m!OtherVariable[39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => Some String[39m
+[38;5;246m# This will expand the value of OtherVariable[39m
+
+[38;5;246m# Default value for variable[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;87mFoo[39m[38;5;70;01m:-[39;00m[38;5;214m"DefaultValueIfFooIsMissingOrEmpty"[39m[38;5;214m}[39m
+[38;5;246m# => DefaultValueIfFooIsMissingOrEmpty[39m
+[38;5;246m# This works for null (Foo=) and empty string (Foo=""); zero (Foo=0) returns 0.[39m
+[38;5;246m# Note that it only returns default value and doesn't change variable value.[39m
+
+[38;5;246m# Declare an array with 6 elements[39m
+[38;5;87marray0[39m[38;5;252m=[39m[38;5;252m([39m[38;5;252mone[39m[38;5;252m [39m[38;5;252mtwo[39m[38;5;252m [39m[38;5;252mthree[39m[38;5;252m [39m[38;5;252mfour[39m[38;5;252m [39m[38;5;252mfive[39m[38;5;252m [39m[38;5;252msix[39m[38;5;252m)[39m
+[38;5;246m# Print first element[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;87m$array0[39m[38;5;252m [39m[38;5;246m# => "one"[39m
+[38;5;246m# Print first element[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;87marray0[39m[38;5;252m[0][39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => "one"[39m
+[38;5;246m# Print all elements[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;87marray0[39m[38;5;252m[@][39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => "one two three four five six"[39m
+[38;5;246m# Print number of elements[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${#[39m[38;5;87marray0[39m[38;5;252m[@][39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => "6"[39m
+[38;5;246m# Print number of characters in third element[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${#[39m[38;5;87marray0[39m[38;5;252m[2][39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => "5"[39m
+[38;5;246m# Print 2 elements starting from forth[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m${[39m[38;5;87marray0[39m[38;5;252m[@][39m[38;5;252m:[39m[38;5;87m3[39m[38;5;252m:[39m[38;5;87m2[39m[38;5;214m}[39m[38;5;252m [39m[38;5;246m# => "four five"[39m
+[38;5;246m# Print all elements. Each of them on new line.[39m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mi[39m[38;5;252m [39m[38;5;252min[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m${[39m[38;5;87marray0[39m[38;5;252m[@][39m[38;5;214m}[39m[38;5;214m"[39m[38;5;252m;[39m[38;5;252m [39m[38;5;70;01mdo[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$i[39m[38;5;214m"[39m
+[38;5;70;01mdone[39;00m
+
+[38;5;246m# Brace Expansion { }[39m
+[38;5;246m# Used to generate arbitrary strings[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252m{[39m[38;5;67m1[39m[38;5;252m..10[39m[38;5;252m}[39m[38;5;252m [39m[38;5;246m# => 1 2 3 4 5 6 7 8 9 10[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252m{[39m[38;5;252ma..z[39m[38;5;252m}[39m[38;5;252m [39m[38;5;246m# => a b c d e f g h i j k l m n o p q r s t u v w x y z[39m
+[38;5;246m# This will output the range from the start value to the end value[39m
+
+[38;5;246m# Built-in variables:[39m
+[38;5;246m# There are some useful built-in variables, like[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mLast program's return value: [39m[38;5;87m$?[39m[38;5;214m"[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mScript's PID: [39m[38;5;87m$$[39m[38;5;214m"[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mNumber of arguments passed to script: [39m[38;5;87m$#[39m[38;5;214m"[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mAll arguments passed to script: [39m[38;5;87m$@[39m[38;5;214m"[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mScript's arguments separated into different variables: [39m[38;5;87m$1[39m[38;5;214m [39m[38;5;87m$2[39m[38;5;214m...[39m[38;5;214m"[39m
+
+[38;5;246m# Now that we know how to echo and use variables,[39m
+[38;5;246m# let's learn some of the other basics of bash![39m
+
+[38;5;246m# Our current directory is available through the command `pwd`.[39m
+[38;5;246m# `pwd` stands for "print working directory".[39m
+[38;5;246m# We can also use the built-in variable `$PWD`.[39m
+[38;5;246m# Observe that the following are equivalent:[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mI'm in [39m[38;5;70;01m$([39;00m[38;5;31mpwd[39m[38;5;70;01m)[39;00m[38;5;214m"[39m[38;5;252m [39m[38;5;246m# execs `pwd` and interpolates output[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mI'm in [39m[38;5;87m$PWD[39m[38;5;214m"[39m[38;5;252m [39m[38;5;246m# interpolates the variable[39m
+
+[38;5;246m# If you get too much output in your terminal, or from a script, the command[39m
+[38;5;246m# `clear` clears your screen[39m
+[38;5;252mclear[39m
+[38;5;246m# Ctrl-L also works for clearing output[39m
+
+[38;5;246m# Reading a value from input:[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"What's your name?"[39m
+[38;5;31mread[39m[38;5;252m [39m[38;5;252mName[39m[38;5;252m [39m[38;5;246m# Note that we didn't need to declare a new variable[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252mHello,[39m[38;5;252m [39m[38;5;87m$Name[39m[38;5;252m![39m
+
+[38;5;246m# We have the usual if structure:[39m
+[38;5;246m# use `man test` for more info about conditionals[39m
+[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;87m$Name[39m[38;5;252m [39m[38;5;252m![39m[38;5;252m=[39m[38;5;252m [39m[38;5;87m$USER[39m[38;5;252m [39m[38;5;252m][39m
+[38;5;70;01mthen[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"Your name isn't your username"[39m
+[38;5;70;01melse[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"Your name is your username"[39m
+[38;5;70;01mfi[39;00m
+[38;5;246m# True if the value of $Name is not equal to the current user's login username[39m
+
+[38;5;246m# NOTE: if $Name is empty, bash sees the above condition as:[39m
+[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;252m![39m[38;5;252m=[39m[38;5;252m [39m[38;5;87m$USER[39m[38;5;252m [39m[38;5;252m][39m
+[38;5;246m# which is invalid syntax[39m
+[38;5;246m# so the "safe" way to use potentially empty variables in bash is:[39m
+[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Name[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m![39m[38;5;252m=[39m[38;5;252m [39m[38;5;87m$USER[39m[38;5;252m [39m[38;5;252m][39m[38;5;252m [39m[38;5;252m...[39m
+[38;5;246m# which, when $Name is empty, is seen by bash as:[39m
+[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;214m""[39m[38;5;252m [39m[38;5;252m![39m[38;5;252m=[39m[38;5;252m [39m[38;5;87m$USER[39m[38;5;252m [39m[38;5;252m][39m[38;5;252m [39m[38;5;252m...[39m
+[38;5;246m# which works as expected[39m
+
+[38;5;246m# There is also conditional execution[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"Always executed"[39m[38;5;252m [39m[38;5;252m||[39m[38;5;252m [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"Only executed if first command fails"[39m
+[38;5;246m# => Always executed[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"Always executed"[39m[38;5;252m [39m[38;5;252m&&[39m[38;5;252m [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"Only executed if first command does NOT fail"[39m
+[38;5;246m# => Always executed[39m
+[38;5;246m# => Only executed if first command does NOT fail[39m
+
+
+[38;5;246m# To use && and || with if statements, you need multiple pairs of square brackets:[39m
+[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Name[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m=[39m[38;5;252m [39m[38;5;214m"Steve"[39m[38;5;252m [39m[38;5;252m][39m[38;5;252m [39m[38;5;252m&&[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Age[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m-eq[39m[38;5;252m [39m[38;5;67m15[39m[38;5;252m [39m[38;5;252m][39m
+[38;5;70;01mthen[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mThis will run if [39m[38;5;87m$Name[39m[38;5;214m is Steve AND [39m[38;5;87m$Age[39m[38;5;214m is 15.[39m[38;5;214m"[39m
+[38;5;70;01mfi[39;00m
+
+[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Name[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m=[39m[38;5;252m [39m[38;5;214m"Daniya"[39m[38;5;252m [39m[38;5;252m][39m[38;5;252m [39m[38;5;252m||[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Name[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m=[39m[38;5;252m [39m[38;5;214m"Zach"[39m[38;5;252m [39m[38;5;252m][39m
+[38;5;70;01mthen[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mThis will run if [39m[38;5;87m$Name[39m[38;5;214m is Daniya OR Zach.[39m[38;5;214m"[39m
+[38;5;70;01mfi[39;00m
+
+[38;5;246m# There is also the `=~` operator, which tests a string against a Regex pattern:[39m
+[38;5;87mEmail[39m[38;5;252m=[39m[38;5;252mme@example.com[39m
+[38;5;70;01mif[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;252m[[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Email[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252m=[39m[38;5;252m~[39m[38;5;252m [39m[38;5;252m[[39m[38;5;252ma-z[39m[38;5;252m][39m[38;5;252m+@[39m[38;5;252m[[39m[38;5;252ma-z[39m[38;5;252m][39m[38;5;252m{[39m[38;5;67m2[39m[38;5;252m,[39m[38;5;252m}[39m[38;5;214m\.[39m[38;5;252m([39m[38;5;252mcom[39m[38;5;252m|[39m[38;5;252mnet[39m[38;5;252m|[39m[38;5;252morg[39m[38;5;252m)[39m[38;5;252m [39m[38;5;252m][39m[38;5;252m][39m
+[38;5;70;01mthen[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"Valid email!"[39m
+[38;5;70;01mfi[39;00m
+[38;5;246m# Note that =~ only works within double [[ ]] square brackets,[39m
+[38;5;246m# which are subtly different from single [ ].[39m
+[38;5;246m# See http://www.gnu.org/software/bash/manual/bashref.html#Conditional-Constructs for more on this.[39m
+
+[38;5;246m# Redefine command `ping` as alias to send only 5 packets[39m
+[38;5;31malias[39m[38;5;252m [39m[38;5;87mping[39m[38;5;252m=[39m[38;5;214m'ping -c 5'[39m
+[38;5;246m# Escape the alias and use command with this name instead[39m
+[38;5;214m\p[39m[38;5;252ming[39m[38;5;252m [39m[38;5;67m192[39m[38;5;252m.168.1.1[39m
+[38;5;246m# Print all aliases[39m
+[38;5;31malias[39m[38;5;252m [39m[38;5;252m-p[39m
+
+[38;5;246m# Expressions are denoted with the following format:[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;70;01m$(([39;00m[38;5;252m [39m[38;5;67m10[39m[38;5;252m [39m[38;5;252m+[39m[38;5;252m [39m[38;5;67m5[39m[38;5;252m [39m[38;5;70;01m))[39;00m[38;5;252m [39m[38;5;246m# => 15[39m
+
+[38;5;246m# Unlike other programming languages, bash is a shell so it works in the context[39m
+[38;5;246m# of a current directory. You can list files and directories in the current[39m
+[38;5;246m# directory with the ls command:[39m
+[38;5;252mls[39m[38;5;252m [39m[38;5;246m# Lists the files and subdirectories contained in the current directory[39m
+
+[38;5;246m# This command has options that control its execution:[39m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m-l[39m[38;5;252m [39m[38;5;246m# Lists every file and directory on a separate line[39m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m-t[39m[38;5;252m [39m[38;5;246m# Sorts the directory contents by last-modified date (descending)[39m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m-R[39m[38;5;252m [39m[38;5;246m# Recursively `ls` this directory and all of its subdirectories[39m
+
+[38;5;246m# Results of the previous command can be passed to the next command as input.[39m
+[38;5;246m# The `grep` command filters the input with provided patterns.[39m
+[38;5;246m# That's how we can list .txt files in the current directory:[39m
+[38;5;252mls[39m[38;5;252m [39m[38;5;252m-l[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mgrep[39m[38;5;252m [39m[38;5;214m"\.txt"[39m
+
+[38;5;246m# Use `cat` to print files to stdout:[39m
+[38;5;252mcat[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# We can also read the file using `cat`:[39m
+[38;5;87mContents[39m[38;5;252m=[39m[38;5;70;01m$([39;00m[38;5;252mcat[39m[38;5;252m [39m[38;5;252mfile.txt[39m[38;5;70;01m)[39;00m
+[38;5;246m# "\n" prints a new line character[39m
+[38;5;246m# "-e" to interpret the newline escape characters as escape characters[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252m-e[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mSTART OF FILE\n[39m[38;5;87m$Contents[39m[38;5;214m\nEND OF FILE[39m[38;5;214m"[39m
+[38;5;246m# => START OF FILE[39m
+[38;5;246m# => [contents of file.txt][39m
+[38;5;246m# => END OF FILE[39m
+
+[38;5;246m# Use `cp` to copy files or directories from one place to another.[39m
+[38;5;246m# `cp` creates NEW versions of the sources,[39m
+[38;5;246m# so editing the copy won't affect the original (and vice versa).[39m
+[38;5;246m# Note that it will overwrite the destination if it already exists.[39m
+[38;5;252mcp[39m[38;5;252m [39m[38;5;252msrcFile.txt[39m[38;5;252m [39m[38;5;252mclone.txt[39m
+[38;5;252mcp[39m[38;5;252m [39m[38;5;252m-r[39m[38;5;252m [39m[38;5;252msrcDirectory/[39m[38;5;252m [39m[38;5;252mdst/[39m[38;5;252m [39m[38;5;246m# recursively copy[39m
+
+[38;5;246m# Look into `scp` or `sftp` if you plan on exchanging files between computers.[39m
+[38;5;246m# `scp` behaves very similarly to `cp`.[39m
+[38;5;246m# `sftp` is more interactive.[39m
+
+[38;5;246m# Use `mv` to move files or directories from one place to another.[39m
+[38;5;246m# `mv` is similar to `cp`, but it deletes the source.[39m
+[38;5;246m# `mv` is also useful for renaming files![39m
+[38;5;252mmv[39m[38;5;252m [39m[38;5;252ms0urc3.txt[39m[38;5;252m [39m[38;5;252mdst.txt[39m[38;5;252m [39m[38;5;246m# sorry, l33t hackers...[39m
+
+[38;5;246m# Since bash works in the context of a current directory, you might want to[39m
+[38;5;246m# run your command in some other directory. We have cd for changing location:[39m
+[38;5;31mcd[39m[38;5;252m [39m[38;5;252m~[39m[38;5;252m    [39m[38;5;246m# change to home directory[39m
+[38;5;31mcd[39m[38;5;252m      [39m[38;5;246m# also goes to home directory[39m
+[38;5;31mcd[39m[38;5;252m [39m[38;5;252m..[39m[38;5;252m   [39m[38;5;246m# go up one directory[39m
+[38;5;252m        [39m[38;5;246m# (^^say, from /home/username/Downloads to /home/username)[39m
+[38;5;31mcd[39m[38;5;252m [39m[38;5;252m/home/username/Documents[39m[38;5;252m   [39m[38;5;246m# change to specified directory[39m
+[38;5;31mcd[39m[38;5;252m [39m[38;5;252m~/Documents/..[39m[38;5;252m    [39m[38;5;246m# still in home directory..isn't it??[39m
+[38;5;31mcd[39m[38;5;252m [39m[38;5;252m-[39m[38;5;252m    [39m[38;5;246m# change to last directory[39m
+[38;5;246m# => /home/username/Documents[39m
+
+[38;5;246m# Use subshells to work across directories[39m
+[38;5;252m([39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mFirst, I'm here: [39m[38;5;87m$PWD[39m[38;5;214m"[39m[38;5;252m)[39m[38;5;252m [39m[38;5;252m&&[39m[38;5;252m [39m[38;5;252m([39m[38;5;31mcd[39m[38;5;252m [39m[38;5;252msomeDir[39m[38;5;252m;[39m[38;5;252m [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mThen, I'm here: [39m[38;5;87m$PWD[39m[38;5;214m"[39m[38;5;252m)[39m
+[38;5;31mpwd[39m[38;5;252m [39m[38;5;246m# still in first directory[39m
+
+[38;5;246m# Use `mkdir` to create new directories.[39m
+[38;5;252mmkdir[39m[38;5;252m [39m[38;5;252mmyNewDir[39m
+[38;5;246m# The `-p` flag causes new intermediate directories to be created as necessary.[39m
+[38;5;252mmkdir[39m[38;5;252m [39m[38;5;252m-p[39m[38;5;252m [39m[38;5;252mmyNewDir/with/intermediate/directories[39m
+[38;5;246m# if the intermediate directories didn't already exist, running the above[39m
+[38;5;246m# command without the `-p` flag would return an error[39m
+
+[38;5;246m# You can redirect command input and output (stdin, stdout, and stderr).[39m
+[38;5;246m# Read from stdin until ^EOF$ and overwrite hello.py with the lines[39m
+[38;5;246m# between "EOF":[39m
+[38;5;252mcat[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;252mhello.py[39m[38;5;252m [39m[38;5;214m<< EOF[39m
+[38;5;214m#!/usr/bin/env python[39m
+[38;5;214mfrom __future__ import print_function[39m
+[38;5;214mimport sys[39m
+[38;5;214mprint("#stdout", file=sys.stdout)[39m
+[38;5;214mprint("#stderr", file=sys.stderr)[39m
+[38;5;214mfor line in sys.stdin:[39m
+[38;5;214m    print(line, file=sys.stdout)[39m
+[38;5;214mEOF[39m
+[38;5;246m# Variables will be expanded if the first "EOF" is not quoted[39m
+
+[38;5;246m# Run the hello.py Python script with various stdin, stdout, and[39m
+[38;5;246m# stderr redirections:[39m
+[38;5;252mpython[39m[38;5;252m [39m[38;5;252mhello.py[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m [39m[38;5;214m"input.in"[39m[38;5;252m [39m[38;5;246m# pass input.in as input to the script[39m
+
+[38;5;252mpython[39m[38;5;252m [39m[38;5;252mhello.py[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;214m"output.out"[39m[38;5;252m [39m[38;5;246m# redirect output from the script to output.out[39m
+
+[38;5;252mpython[39m[38;5;252m [39m[38;5;252mhello.py[39m[38;5;252m [39m[38;5;67m2[39m[38;5;252m>[39m[38;5;252m [39m[38;5;214m"error.err"[39m[38;5;252m [39m[38;5;246m# redirect error output to error.err[39m
+
+[38;5;252mpython[39m[38;5;252m [39m[38;5;252mhello.py[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;214m"output-and-error.log"[39m[38;5;252m [39m[38;5;67m2[39m[38;5;252m>[39m[38;5;252m&[39m[38;5;67m1[39m
+[38;5;246m# redirect both output and errors to output-and-error.log[39m
+
+[38;5;252mpython[39m[38;5;252m [39m[38;5;252mhello.py[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;252m/dev/null[39m[38;5;252m [39m[38;5;67m2[39m[38;5;252m>[39m[38;5;252m&[39m[38;5;67m1[39m
+[38;5;246m# redirect all output and errors to the black hole, /dev/null, i.e., no output[39m
+
+[38;5;246m# The output error will overwrite the file if it exists,[39m
+[38;5;246m# if you want to append instead, use ">>":[39m
+[38;5;252mpython[39m[38;5;252m [39m[38;5;252mhello.py[39m[38;5;252m [39m[38;5;252m>>[39m[38;5;252m [39m[38;5;214m"output.out"[39m[38;5;252m [39m[38;5;67m2[39m[38;5;252m>>[39m[38;5;252m [39m[38;5;214m"error.err"[39m
+
+[38;5;246m# Overwrite output.out, append to error.err, and count lines:[39m
+[38;5;252minfo[39m[38;5;252m [39m[38;5;252mbash[39m[38;5;252m [39m[38;5;214m'Basic Shell Features'[39m[38;5;252m [39m[38;5;214m'Redirections'[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;252moutput.out[39m[38;5;252m [39m[38;5;67m2[39m[38;5;252m>>[39m[38;5;252m [39m[38;5;252merror.err[39m
+[38;5;252mwc[39m[38;5;252m [39m[38;5;252m-l[39m[38;5;252m [39m[38;5;252moutput.out[39m[38;5;252m [39m[38;5;252merror.err[39m
+
+[38;5;246m# Run a command and print its file descriptor (e.g. /dev/fd/123)[39m
+[38;5;246m# see: man fd[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m([39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"#helloworld"[39m[38;5;252m)[39m
+
+[38;5;246m# Overwrite output.out with "#helloworld":[39m
+[38;5;252mcat[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;252moutput.out[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m([39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"#helloworld"[39m[38;5;252m)[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"#helloworld"[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;252moutput.out[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"#helloworld"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mcat[39m[38;5;252m [39m[38;5;252m>[39m[38;5;252m [39m[38;5;252moutput.out[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"#helloworld"[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mtee[39m[38;5;252m [39m[38;5;252moutput.out[39m[38;5;252m [39m[38;5;252m>/dev/null[39m
+
+[38;5;246m# Cleanup temporary files verbosely (add '-i' for interactive)[39m
+[38;5;246m# WARNING: `rm` commands cannot be undone[39m
+[38;5;252mrm[39m[38;5;252m [39m[38;5;252m-v[39m[38;5;252m [39m[38;5;252moutput.out[39m[38;5;252m [39m[38;5;252merror.err[39m[38;5;252m [39m[38;5;252moutput-and-error.log[39m
+[38;5;252mrm[39m[38;5;252m [39m[38;5;252m-r[39m[38;5;252m [39m[38;5;252mtempDir/[39m[38;5;252m [39m[38;5;246m# recursively delete[39m
+
+[38;5;246m# Commands can be substituted within other commands using $( ):[39m
+[38;5;246m# The following command displays the number of files and directories in the[39m
+[38;5;246m# current directory.[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mThere are [39m[38;5;70;01m$([39;00m[38;5;252mls[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mwc[39m[38;5;252m [39m[38;5;252m-l[39m[38;5;70;01m)[39;00m[38;5;214m items here.[39m[38;5;214m"[39m
+
+[38;5;246m# The same can be done using backticks `` but they can't be nested -[39m
+[38;5;246m#the preferred way is to use $( ).[39m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"There are `ls | wc -l` items here."[39m
+
+[38;5;246m# Bash uses a `case` statement that works similarly to switch in Java and C++:[39m
+[38;5;70;01mcase[39;00m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Variable[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252min[39m
+[38;5;252m    [39m[38;5;246m#List patterns for the conditions you want to meet[39m
+[38;5;252m    [39m[38;5;67m0[39m[38;5;252m)[39m[38;5;252m [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"There is a zero."[39m[38;5;252m;[39m[38;5;252m;[39m
+[38;5;252m    [39m[38;5;67m1[39m[38;5;252m)[39m[38;5;252m [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"There is a one."[39m[38;5;252m;[39m[38;5;252m;[39m
+[38;5;252m    [39m[38;5;252m*[39m[38;5;252m)[39m[38;5;252m [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"It is not null."[39m[38;5;252m;[39m[38;5;252m;[39m
+[38;5;70;01mesac[39;00m
+
+[38;5;246m# `for` loops iterate for as many arguments given:[39m
+[38;5;246m# The contents of $Variable is printed three times.[39m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mVariable[39m[38;5;252m [39m[38;5;252min[39m[38;5;252m [39m[38;5;252m{[39m[38;5;67m1[39m[38;5;252m..3[39m[38;5;252m}[39m
+[38;5;70;01mdo[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Variable[39m[38;5;214m"[39m
+[38;5;70;01mdone[39;00m
+[38;5;246m# => 1[39m
+[38;5;246m# => 2[39m
+[38;5;246m# => 3[39m
+
+
+[38;5;246m# Or write it the "traditional for loop" way:[39m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252m([39m[38;5;252m([39m[38;5;87ma[39m[38;5;252m=[39m[38;5;67m1[39m[38;5;252m;[39m[38;5;252m [39m[38;5;252ma[39m[38;5;252m [39m[38;5;252m<[39m[38;5;252m=[39m[38;5;252m [39m[38;5;67m3[39m[38;5;252m;[39m[38;5;252m [39m[38;5;252ma++[39m[38;5;252m)[39m[38;5;252m)[39m
+[38;5;70;01mdo[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;87m$a[39m
+[38;5;70;01mdone[39;00m
+[38;5;246m# => 1[39m
+[38;5;246m# => 2[39m
+[38;5;246m# => 3[39m
+
+[38;5;246m# They can also be used to act on files..[39m
+[38;5;246m# This will run the command `cat` on file1 and file2[39m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mVariable[39m[38;5;252m [39m[38;5;252min[39m[38;5;252m [39m[38;5;252mfile1[39m[38;5;252m [39m[38;5;252mfile2[39m
+[38;5;70;01mdo[39;00m
+[38;5;252m    [39m[38;5;252mcat[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Variable[39m[38;5;214m"[39m
+[38;5;70;01mdone[39;00m
+
+[38;5;246m# ..or the output from a command[39m
+[38;5;246m# This will `cat` the output from `ls`.[39m
+[38;5;70;01mfor[39;00m[38;5;252m [39m[38;5;252mOutput[39m[38;5;252m [39m[38;5;252min[39m[38;5;252m [39m[38;5;70;01m$([39;00m[38;5;252mls[39m[38;5;70;01m)[39;00m
+[38;5;70;01mdo[39;00m
+[38;5;252m    [39m[38;5;252mcat[39m[38;5;252m [39m[38;5;214m"[39m[38;5;87m$Output[39m[38;5;214m"[39m
+[38;5;70;01mdone[39;00m
+
+[38;5;246m# while loop:[39m
+[38;5;70;01mwhile[39;00m[38;5;252m [39m[38;5;252m[[39m[38;5;252m [39m[38;5;31mtrue[39m[38;5;252m [39m[38;5;252m][39m
+[38;5;70;01mdo[39;00m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"loop body here..."[39m
+[38;5;252m    [39m[38;5;31mbreak[39m
+[38;5;70;01mdone[39;00m
+[38;5;246m# => loop body here...[39m
+
+[38;5;246m# You can also define functions[39m
+[38;5;246m# Definition:[39m
+[38;5;70;01mfunction[39;00m[38;5;252m [39m[38;5;252mfoo[39m[38;5;252m [39m[38;5;252m([39m[38;5;252m)[39m
+[38;5;252m{[39m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mArguments work just like script arguments: [39m[38;5;87m$@[39m[38;5;214m"[39m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mAnd: [39m[38;5;87m$1[39m[38;5;214m [39m[38;5;87m$2[39m[38;5;214m...[39m[38;5;214m"[39m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"This is a function"[39m
+[38;5;252m    [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;67m0[39m
+[38;5;252m}[39m
+[38;5;246m# Call the function `foo` with two arguments, arg1 and arg2:[39m
+[38;5;252mfoo[39m[38;5;252m [39m[38;5;252marg1[39m[38;5;252m [39m[38;5;252marg2[39m
+[38;5;246m# => Arguments work just like script arguments: arg1 arg2[39m
+[38;5;246m# => And: arg1 arg2...[39m
+[38;5;246m# => This is a function[39m
+
+[38;5;246m# or simply[39m
+[38;5;252mbar[39m[38;5;252m [39m[38;5;252m([39m[38;5;252m)[39m
+[38;5;252m{[39m
+[38;5;252m    [39m[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"Another way to declare functions!"[39m
+[38;5;252m    [39m[38;5;70;01mreturn[39;00m[38;5;252m [39m[38;5;67m0[39m
+[38;5;252m}[39m
+[38;5;246m# Call the function `bar` with no arguments:[39m
+[38;5;252mbar[39m[38;5;252m [39m[38;5;246m# => Another way to declare functions![39m
+
+[38;5;246m# Calling your function[39m
+[38;5;252mfoo[39m[38;5;252m [39m[38;5;214m"My name is"[39m[38;5;252m [39m[38;5;87m$Name[39m
+
+[38;5;246m# There are a lot of useful commands you should learn:[39m
+[38;5;246m# prints last 10 lines of file.txt[39m
+[38;5;252mtail[39m[38;5;252m [39m[38;5;252m-n[39m[38;5;252m [39m[38;5;67m10[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# prints first 10 lines of file.txt[39m
+[38;5;252mhead[39m[38;5;252m [39m[38;5;252m-n[39m[38;5;252m [39m[38;5;67m10[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# sort file.txt's lines[39m
+[38;5;252msort[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# report or omit repeated lines, with -d it reports them[39m
+[38;5;252muniq[39m[38;5;252m [39m[38;5;252m-d[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# prints only the first column before the ',' character[39m
+[38;5;252mcut[39m[38;5;252m [39m[38;5;252m-d[39m[38;5;252m [39m[38;5;214m','[39m[38;5;252m [39m[38;5;252m-f[39m[38;5;252m [39m[38;5;67m1[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# replaces every occurrence of 'okay' with 'great' in file.txt[39m
+[38;5;246m# (regex compatible)[39m
+[38;5;252msed[39m[38;5;252m [39m[38;5;252m-i[39m[38;5;252m [39m[38;5;214m's/okay/great/g'[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# print to stdout all lines of file.txt which match some regex[39m
+[38;5;246m# The example prints lines which begin with "foo" and end in "bar"[39m
+[38;5;252mgrep[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m^foo.*bar[39m[38;5;252m$[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# pass the option "-c" to instead print the number of lines matching the regex[39m
+[38;5;252mgrep[39m[38;5;252m [39m[38;5;252m-c[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m^foo.*bar[39m[38;5;252m$[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# Other useful options are:[39m
+[38;5;252mgrep[39m[38;5;252m [39m[38;5;252m-r[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m^foo.*bar[39m[38;5;252m$[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252msomeDir/[39m[38;5;252m [39m[38;5;246m# recursively `grep`[39m
+[38;5;252mgrep[39m[38;5;252m [39m[38;5;252m-n[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m^foo.*bar[39m[38;5;252m$[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252mfile.txt[39m[38;5;252m [39m[38;5;246m# give line numbers[39m
+[38;5;252mgrep[39m[38;5;252m [39m[38;5;252m-rI[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m^foo.*bar[39m[38;5;252m$[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252msomeDir/[39m[38;5;252m [39m[38;5;246m# recursively `grep`, but ignore binary files[39m
+
+[38;5;246m# perform the same initial search, but filter out the lines containing "baz"[39m
+[38;5;252mgrep[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214m^foo.*bar[39m[38;5;252m$[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252mfile.txt[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mgrep[39m[38;5;252m [39m[38;5;252m-v[39m[38;5;252m [39m[38;5;214m"baz"[39m
+
+[38;5;246m# if you literally want to search for the string,[39m
+[38;5;246m# and not the regex, use fgrep (or grep -F)[39m
+[38;5;252mfgrep[39m[38;5;252m [39m[38;5;214m"foobar"[39m[38;5;252m [39m[38;5;252mfile.txt[39m
+
+[38;5;246m# The `trap` command allows you to execute a command whenever your script[39m
+[38;5;246m# receives a signal. Here, `trap` will execute `rm` if it receives any of the[39m
+[38;5;246m# three listed signals.[39m
+[38;5;31mtrap[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mrm [39m[38;5;87m$TEMP_FILE[39m[38;5;214m; exit[39m[38;5;214m"[39m[38;5;252m [39m[38;5;252mSIGHUP[39m[38;5;252m [39m[38;5;252mSIGINT[39m[38;5;252m [39m[38;5;252mSIGTERM[39m
+
+[38;5;246m# `sudo` is used to perform commands as the superuser[39m
+[38;5;87mNAME1[39m[38;5;252m=[39m[38;5;70;01m$([39;00m[38;5;252mwhoami[39m[38;5;70;01m)[39;00m
+[38;5;87mNAME2[39m[38;5;252m=[39m[38;5;70;01m$([39;00m[38;5;252msudo[39m[38;5;252m [39m[38;5;252mwhoami[39m[38;5;70;01m)[39;00m
+[38;5;31mecho[39m[38;5;252m [39m[38;5;214m"[39m[38;5;214mWas [39m[38;5;87m$NAME1[39m[38;5;214m, then became more powerful [39m[38;5;87m$NAME2[39m[38;5;214m"[39m
+
+[38;5;246m# Read Bash shell built-ins documentation with the bash `help` built-in:[39m
+[38;5;31mhelp[39m
+[38;5;31mhelp[39m[38;5;252m [39m[38;5;31mhelp[39m
+[38;5;31mhelp[39m[38;5;252m [39m[38;5;70;01mfor[39;00m
+[38;5;31mhelp[39m[38;5;252m [39m[38;5;70;01mreturn[39;00m
+[38;5;31mhelp[39m[38;5;252m [39m[38;5;31msource[39m
+[38;5;31mhelp[39m[38;5;252m [39m[38;5;252m.[39m
+
+[38;5;246m# Read Bash manpage documentation with `man`[39m
+[38;5;252mapropos[39m[38;5;252m [39m[38;5;252mbash[39m
+[38;5;252mman[39m[38;5;252m [39m[38;5;67m1[39m[38;5;252m [39m[38;5;252mbash[39m
+[38;5;252mman[39m[38;5;252m [39m[38;5;252mbash[39m
+
+[38;5;246m# Read info documentation with `info` (`?` for help)[39m
+[38;5;252mapropos[39m[38;5;252m [39m[38;5;252minfo[39m[38;5;252m [39m[38;5;252m|[39m[38;5;252m [39m[38;5;252mgrep[39m[38;5;252m [39m[38;5;214m'^info.*('[39m
+[38;5;252mman[39m[38;5;252m [39m[38;5;252minfo[39m
+[38;5;252minfo[39m[38;5;252m [39m[38;5;252minfo[39m
+[38;5;252minfo[39m[38;5;252m [39m[38;5;67m5[39m[38;5;252m [39m[38;5;252minfo[39m
+
+[38;5;246m# Read bash info documentation:[39m
+[38;5;252minfo[39m[38;5;252m [39m[38;5;252mbash[39m
+[38;5;252minfo[39m[38;5;252m [39m[38;5;252mbash[39m[38;5;252m [39m[38;5;214m'Bash Features'[39m
+[38;5;252minfo[39m[38;5;252m [39m[38;5;252mbash[39m[38;5;252m [39m[38;5;67m6[39m
+[38;5;252minfo[39m[38;5;252m [39m[38;5;252m--apropos[39m[38;5;252m [39m[38;5;252mbash[39m

@@ -1,12 +1,16 @@
 #!/bin/bash
 
-rsync -avzh ~/Book /media/xm/黑甲虫/Documents/
-rsync -avzh ~/Documents /media/xm/黑甲虫/
-rsync -avzh ~/Config /media/xm/黑甲虫/
-rsync -avzh ~/Dotfiles /media/xm/黑甲虫/
-rsync -avzh ~/Photo /media/xm/黑甲虫/
-rsync -avzh ~/Pictures /media/xm/黑甲虫/
-rsync -avzh ~/Project/WORK /media/xm/黑甲虫/Project
+rsync -av ~/Book /media/xm/黑甲虫/Documents/
+rsync -av ~/Documents/Calibre /media/xm/黑甲虫/Documents/
+rsync -av ~/Documents /media/xm/黑甲虫/
+rsync -av ~/Config /media/xm/黑甲虫/ --delete
+rsync -av ~/Dotfiles /media/xm/黑甲虫/ --delete
+rsync -av ~/Photo /media/xm/黑甲虫/
+rsync -av ~/Pictures /media/xm/黑甲虫/
+rsync -av ~/Dropbox /media/xm/黑甲虫/ --delete
+rsync -av ~/0000 /media/xm/黑甲虫/ --delete
+rsync -av ~/Downloads /media/xm/黑甲虫/ --delete
+
 # rsync -avzh ~/Software /media/xm/黑甲虫/
 # rsync -avzh ~/Source /media/xm/黑甲虫/
 # rsync -avzh ~/Write /media/xm/黑甲虫/

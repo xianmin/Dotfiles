@@ -88,6 +88,7 @@ export LC_CTYPE="zh_CN.UTF-8"
 alias ec="emacsclient -nq"
 alias zshconfig="vim ~/.zshrc"
 alias h="cht.sh"
+# alias rm="gvfs-trash"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # add qt lib
@@ -139,14 +140,14 @@ export SASS_BINARY_SITE="https://npm.taobao.org/mirrors/node-sass"
 
 
 # nvm
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+# export NVM_DIR="$HOME/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+# [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 # n
 # https://github.com/tj/n#optional-environment-variables
-export N_PREFIX=$HOME/.n
-export PATH=$N_PREFIX/bin:$PATH
+# export N_PREFIX=$HOME/.n
+# export PATH=$N_PREFIX/bin:$PATH
 
 
 # >>> conda initialize >>>
@@ -168,3 +169,8 @@ unset __conda_setup
 autoload -U compinit && compinit
 zstyle ':completion::complete:*' use-cache 1  # To activate the completion cache for packages
 zstyle ":conda_zsh_completion:*" use-groups true  # To display subcommand completion in groups
+
+
+
+# 不要展开
+GLOBALIAS_FILTER_VALUES=(cnpm la l h)
