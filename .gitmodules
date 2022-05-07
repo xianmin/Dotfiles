@@ -7,3 +7,6 @@
 [submodule "git/git-extras"]
 	path = git/git-extras
 	url = https://github.com/tj/git-extras.git
+[submodule "fcitx/rime"]
+	path = fcitx/rime
+	url = git@github.com:xianmin/xm-rime-config.git
