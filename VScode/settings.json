@@ -1,6 +1,6 @@
 // Place your settings in this file to overwrite the default settings
 {
-    "update.channel": "none",
+    "update.mode": "none",
     "files.autoSave": "afterDelay",
     "editor.fontSize": 16,
     "editor.renderWhitespace": "boundary",
@@ -9,8 +9,6 @@
     "editor.formatOnType": true,
     "editor.cursorBlinking": "solid",
     "editor.mouseWheelZoom": true,
-
-    "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'Courier New', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
     "editor.dragAndDrop": true,
     "extensions.autoUpdate": true,
@@ -19,7 +17,7 @@
     // "vim.overrideCopy": false,
     // "vim.insertModeKeyBindings": [],
     "editor.tabSize": 2,
-    "typescript.tsserver.log": "verbose",
+    "typescript.tsserver.log": "off",
 
     // Global Launch Configuration
     "launch": {
@@ -42,15 +40,10 @@
     },
     // "guides.enabled": false,
     "editor.minimap.enabled": true,
-    // "workbench.panel.location": "bottom",
-    "workbench.activityBar.visible": true,
-    "workbench.colorTheme": "Default Light+",
     "zenMode.fullScreen": false,
-    "window.menuBarVisibility": "toggle",
-    "editor.multiCursorModifier": "ctrlCmd",
-    "editor.rulers": [
-        80
-    ],
+    // "editor.rulers": [
+    //     100
+    // ],
     "files.associations": {
         "*.wxml": "html",
         "*.wxss": "css"
@@ -81,8 +74,37 @@
 ],
 "files.insertFinalNewline": true,
 "workbench.startupEditor": "welcomePage",
-"terminal.integrated.inheritEnv": false,
 "terminal.integrated.shell.linux": "/usr/bin/zsh",
 "workbench.commandPalette.history": 0,
 "sync.forceUpload": false,
+"debug.node.autoAttach": "on",
+"debug.node.useV3": true,
+"terminal.integrated.automationShell.linux": "",
+"gitlens.mode.active": "zen",
+"editor.defaultFormatter": "esbenp.prettier-vscode",
+"prettier.printWidth": 100,
+"prettier.semi": false,
+"prettier.singleQuote": true,
+"files.eol": "\n",
+"editor.wordWrapColumn": 100,
+"gitlens.defaultDateLocale": null,
+"gitlens.hovers.currentLine.over": "line",
+"typescript.tsserver.enableTracing": true,
+"search.exclude": {
+    "**/dist": true
+},
+"workbench.colorTheme": "Default Light+",
+"gitlens.gitCommands.skipConfirmations": [
+    "fetch:command",
+    "switch:command"
+],
+"latex-workshop.view.pdf.viewer": "tab",
+"[latex]": {
+    "editor.defaultFormatter": "Jeff-Tian.tex-workshop"
+},
+"latex-workshop.latex.autoBuild.run": "never",
+"security.workspace.trust.untrustedFiles": "open",
+"window.menuBarVisibility": "toggle",
+"git.closeDiffOnOperation": true,
+"keyboard.dispatch": "keyCode",
 }

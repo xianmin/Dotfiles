@@ -40,10 +40,14 @@ git/gitignore
 #mutt
 #mutt/muttrc
 #mutt/offlineimaprc
+
+# python
 python/jupyter
 python/pip/:.config/pip
+python/conda/condarc
 #python/pythonrc
 #python/pylintrc
+
 #rpm/rpmmacros
 #ruby/irbrc
 #ruby/pryrc
@@ -81,11 +85,12 @@ VScode/settings.json:.config/Code/User/settings.json
 
 # fcitx
 # fcitx/punc-ng.mb-zh_CN:.config/fcitx/data/punc-ng.mb-zh_CN
+fcitx/rime:.config/fcitx/rime
 [endfiles]
 
 ## hostname                     type=masterhost, ANY or NONE    files=dotfile:tolink,another:tolink
 [hosts]
-xm20-PC git=ANY
+xm-mpc git=ANY
 #host1.example.com               git=ANY                        files=custom/dotfile    #git repo, pull from anywhere and link a custom dotfile
 #host2.example.com               git=ANY                                                #git repo, pull from anywhere
 #host3.example.com               git=ANY                                                #git repo, pull from anywhere

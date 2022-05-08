@@ -2,7 +2,7 @@
 
 rsync -av ~/Book /media/xm/黑甲虫/Documents/
 rsync -av ~/Documents/Calibre /media/xm/黑甲虫/Documents/
-rsync -av ~/Documents /media/xm/黑甲虫/
+# rsync -av ~/Documents /media/xm/黑甲虫/
 rsync -av ~/Config /media/xm/黑甲虫/ --delete
 rsync -av ~/Dotfiles /media/xm/黑甲虫/ --delete
 rsync -av ~/Photo /media/xm/黑甲虫/
