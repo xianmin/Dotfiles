@@ -141,6 +141,10 @@ Set-Alias env        Get-Environment -Option AllScope
 #     }
 # }
 
+# 代理设置
+$env:HTTP_PROXY="http://127.0.0.1:8889"
+$env:HTTPS_PROXY="http://127.0.0.1:8889"
+
 # define these environment variables if not set already and also provide them as PSVariables
 if (-not $env:XDG_CONFIG_HOME) { $env:XDG_CONFIG_HOME = Join-Path -Path "$HOME" -ChildPath ".config" }; $XDG_CONFIG_HOME = $env:XDG_CONFIG_HOME
 if (-not $env:XDG_DATA_HOME) { $env:XDG_DATA_HOME = Join-Path -Path "$HOME" -ChildPath ".local/share" }; $XDG_DATA_HOME = $env:XDG_DATA_HOME
